@@ -1,3 +1,3 @@
-export const SETTING = {
+export const SETTINGS = {
   offersCount: 312
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App';
-import { SETTING } from './const';
+import { SETTINGS } from './const';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      offersCount={SETTING.offersCount}
+      offersCount={SETTINGS.offersCount}
     />
   </React.StrictMode>
 );
