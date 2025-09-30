@@ -1,4 +1,8 @@
+import {useParams} from 'react-router-dom';
+
 function OfferPage(): JSX.Element {
+  const params = useParams();
+  
   return (
     <div className='page'>
       <header className='header'>
