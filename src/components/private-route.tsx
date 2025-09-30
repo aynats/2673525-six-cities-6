@@ -8,8 +8,8 @@ type PrivateRouteProps = {
 function PrivateRoute({children}: PrivateRouteProps): JSX.Element {
   const hasAccess = false;
 
-  return hasAccess 
-    ? children 
+  return hasAccess
+    ? children
     : <Navigate to={AppRoute.Login} />;
 }
 

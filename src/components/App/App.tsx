@@ -40,9 +40,7 @@ function App({offersCount}: AppProps): JSX.Element {
           element={<NotFoundPage />}
         />
       </Routes>
-      
     </BrowserRouter>
-    
   );
 }
 
