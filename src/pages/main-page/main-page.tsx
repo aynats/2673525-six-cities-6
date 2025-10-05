@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import CitiesCard from '../../components/cities-card';
 
 type MainPageProps = {
@@ -7,6 +8,9 @@ type MainPageProps = {
 function MainPage({offersCount}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>{'6 sities'}</title>
+      </Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -150,6 +154,5 @@ function MainPage({offersCount}: MainPageProps): JSX.Element {
     </div>
   );
 }
-
 
 export default MainPage;
