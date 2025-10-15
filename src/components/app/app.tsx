@@ -21,7 +21,7 @@ function App({offersCount, offers}: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Root}
-            element={<MainPage offersCount={offersCount} />}
+            element={<MainPage offersCount={offersCount} offers={offers}/>}
           />
           <Route
             path={AppRoute.Login}
@@ -31,7 +31,7 @@ function App({offersCount, offers}: AppProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute redirectTo = {AppRoute.Login}>
-                <FavoritesPage />
+                <FavoritesPage offers={offers}/>
               </PrivateRoute>
             }
           />

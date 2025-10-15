@@ -5,7 +5,7 @@ export type Offer = {
   title: string;
   description: string;
   rating: number;
-  type: 'Apartament' | 'Room';
+  housingType: 'Apartament' | 'Room';
   bedroomCount: number;
   adultsCount: number;
   price: number;

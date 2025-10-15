@@ -7,7 +7,7 @@ type PrivateRouteProps = {
 };
 
 function PrivateRoute({redirectTo, children}: PrivateRouteProps): JSX.Element {
-  const hasAccess = false;
+  const hasAccess = true;
 
   return hasAccess
     ? children

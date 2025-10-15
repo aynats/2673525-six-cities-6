@@ -1,33 +1,40 @@
 import { Helmet } from 'react-helmet-async';
-import CitiesCard from '../../components/cities-card';
+import { Offer } from '../../types/offer';
+import OffersList from '../../components/offers-list';
+import { Link } from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 type MainPageProps = {
   offersCount: number;
+  offers: Offer[];
 }
 
-function MainPage({offersCount}: MainPageProps): JSX.Element {
+function MainPage({offersCount, offers}: MainPageProps): JSX.Element {
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const favoriteCount = favoriteOffers.length;
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
-        <title>{'6 sities'}</title>
+        <title>{'6 cities'}</title>
       </Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
+              <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
+                  <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
+                    <span className="header__favorite-count">{favoriteCount}</span>
+                  </Link>
                 </li>
                 <li className="header__nav-item">
                   <a className="header__nav-link" href="#">
@@ -46,34 +53,34 @@ function MainPage({offersCount}: MainPageProps): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
                   <span>Paris</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
                   <span>Cologne</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
                   <span>Brussels</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
+                <Link className="locations__item-link tabs__item tabs__item--active" to={AppRoute.Root}>
                   <span>Amsterdam</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
                   <span>Hamburg</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
                   <span>Dusseldorf</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </section>
@@ -100,49 +107,7 @@ function MainPage({offersCount}: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CitiesCard
-                  description="Beautiful &amp; luxurious apartment at great location"
-                  imageSrc="img/apartment-01.jpg"
-                  price={120}
-                  rating={4}
-                  housingType="Apartment"
-                  isPremium
-                />
-
-                <CitiesCard
-                  description="Wood and stone place"
-                  imageSrc="img/room.jpg"
-                  price={80}
-                  rating={4}
-                  housingType="Room"
-                  isFavorite
-                />
-
-                <CitiesCard
-                  description="Canal View Prinsengracht"
-                  imageSrc="img/apartment-02.jpg"
-                  price={132}
-                  rating={4}
-                  housingType="Apartment"
-                />
-
-                <CitiesCard
-                  description="Nice, cozy, warm big bed apartment"
-                  imageSrc="img/apartment-03.jpg"
-                  price={180}
-                  rating={5}
-                  housingType="Apartment"
-                  isPremium
-                />
-
-                <CitiesCard
-                  description="Wood and stone place"
-                  imageSrc="img/room.jpg"
-                  price={80}
-                  rating={4}
-                  housingType="Room"
-                  isFavorite
-                />
+                <OffersList offers={offers.filter((offer) => offer.city === 'Amsterdam')} />
               </div>
             </section>
             <div className="cities__right-section">
