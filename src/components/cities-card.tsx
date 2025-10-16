@@ -1,25 +1,37 @@
-type CitiesCardProps = {
-  description: string;
-  imageSrc: string;
-  price: number;
-  rating: 1 | 2 | 3 | 4 | 5;
-  housingType: string;
-  isFavorite?: boolean;
-  isPremium?: boolean;
-}
+import { Offer } from '../types/offer';
+import { Link } from 'react-router-dom';
 
-function CitiesCard({isPremium, imageSrc, price, isFavorite, rating, description, housingType}: CitiesCardProps): JSX.Element {
+type CitiesCardProps = Pick<Offer,
+  'id' |
+  'city' |
+  'imageSrc' |
+  'title' |
+  'price' |
+  'rating'|
+  'housingType' |
+  'isFavorite' |
+  'isPremium'
+> & {
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
+
+function CitiesCard({id, imageSrc, price, rating, title, housingType, isPremium, isFavorite, onMouseEnter, onMouseLeave}: CitiesCardProps): JSX.Element {
+  const mainPhoto = imageSrc[0];
   return (
-    <article className='cities__card place-card'>
+    <article className='cities__card place-card'
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>
         </div>
       )}
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <a href='#'>
-          <img className='place-card__image' src={imageSrc} width='260' height='200' alt='Place image'/>
-        </a>
+        <Link to ={`/offer/${id}`}>
+          <img className='place-card__image' src={mainPhoto} width='260' height='200' alt='Place image'/>
+        </Link>
       </div>
       <div className='place-card__info'>
         <div className='place-card__price-wrapper'>
@@ -42,7 +54,7 @@ function CitiesCard({isPremium, imageSrc, price, isFavorite, rating, description
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='#'>{description}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className='place-card__type'>{housingType}</p>
       </div>
