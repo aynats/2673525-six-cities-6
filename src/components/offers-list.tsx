@@ -9,8 +9,9 @@ type OffersListProps = {
 
 function OffersList({ offers, onListItemHover } : OffersListProps) : JSX.Element {
   const handleListItemHover = (event: MouseEvent<HTMLElement>) => {
-    if (!onListItemHover) 
+    if (!onListItemHover) {
       return;
+    }
     event.preventDefault();
     const offerId = event.currentTarget.id;
     if (offerId) {
