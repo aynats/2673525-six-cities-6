@@ -22,7 +22,7 @@ function CitiesCard({id, imageSrc, price, rating, title, housingType, isPremium,
   const offerRoute = getOfferRoute(id);
 
   return (
-    <article 
+    <article
       id={id.toString()}
       className="cities__card place-card"
       onMouseEnter={onMouseEnter}
@@ -32,7 +32,7 @@ function CitiesCard({id, imageSrc, price, rating, title, housingType, isPremium,
           <span>Premium</span>
         </div>
       )}
-      
+
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to ={offerRoute}>
           <img className='place-card__image' src={mainPhoto} width='260' height='200' alt='Place image'/>

@@ -117,7 +117,7 @@ function MainPage({city, offersCount, offers}: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList 
+                <OffersList
                   offers={offers.filter((offer) => offer.city === city.title)}
                   onListItemHover={handleListItemHover}
                 />

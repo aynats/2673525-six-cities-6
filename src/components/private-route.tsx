@@ -11,8 +11,8 @@ function PrivateRoute({redirectTo, children}: PrivateRouteProps): JSX.Element {
   const hasAccess = true;
 
   return hasAccess
-    ? <>{children}</>
-    : <Navigate to={redirectTo} />;
+    ? children as JSX.Element
+    : <Navigate to={redirectTo}/>;
 }
 
 export default PrivateRoute;
