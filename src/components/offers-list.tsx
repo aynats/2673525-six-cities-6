@@ -4,11 +4,13 @@ import { MouseEvent } from 'react';
 
 type OffersListProps = {
   offers: Offer[];
-  onListItemHover: (offerId: string) => void;
+  onListItemHover?: (offerId: string) => void;
 };
 
 function OffersList({ offers, onListItemHover } : OffersListProps) : JSX.Element {
   const handleListItemHover = (event: MouseEvent<HTMLElement>) => {
+    if (!onListItemHover) 
+      return;
     event.preventDefault();
     const offerId = event.currentTarget.id;
     if (offerId) {
