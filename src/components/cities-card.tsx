@@ -1,5 +1,7 @@
 import { Offer } from '../types/offer';
 import { Link } from 'react-router-dom';
+import { getOfferRoute } from '../const';
+import { MouseEvent } from 'react';
 
 type CitiesCardProps = Pick<Offer,
   'id' |
@@ -12,24 +14,27 @@ type CitiesCardProps = Pick<Offer,
   'isFavorite' |
   'isPremium'
 > & {
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
+  onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
 };
 
-function CitiesCard({id, imageSrc, price, rating, title, housingType, isPremium, isFavorite, onMouseEnter, onMouseLeave}: CitiesCardProps): JSX.Element {
-  const mainPhoto = imageSrc[0];
+function CitiesCard({id, imageSrc, price, rating, title, housingType, isPremium, isFavorite, onMouseEnter, }: CitiesCardProps): JSX.Element {
+  const mainPhoto = imageSrc[0] || '';
+  const offerRoute = getOfferRoute(id);
+
   return (
-    <article className='cities__card place-card'
+    <article 
+      id={id.toString()}
+      className="cities__card place-card"
       onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       {isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>
         </div>
       )}
+      
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <Link to ={`/offer/${id}`}>
+        <Link to ={offerRoute}>
           <img className='place-card__image' src={mainPhoto} width='260' height='200' alt='Place image'/>
         </Link>
       </div>
@@ -54,7 +59,7 @@ function CitiesCard({id, imageSrc, price, rating, title, housingType, isPremium,
           </div>
         </div>
         <h2 className='place-card__name'>
-          <Link to={`/offer/${id}`}>{title}</Link>
+          <Link to={offerRoute}>{title}</Link>
         </h2>
         <p className='place-card__type'>{housingType}</p>
       </div>

@@ -38,6 +38,11 @@ export const offers: Offer[] = [
     },
     isPremium: true,
     isFavorite: false,
+    points: {
+      id: 1,
+      lat: 52.3909553943508,
+      lng: 4.85309666406198
+    }
   },
   {
     id: 2,
@@ -49,7 +54,7 @@ export const offers: Offer[] = [
       'img/studio-01.jpg',
       'img/apartment-03.jpg',
     ],
-    city: 'Paris',
+    city: 'Amsterdam',
     title: 'Wood and stone place',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
     rating: 4.5,
@@ -74,6 +79,11 @@ export const offers: Offer[] = [
     },
     isPremium: false,
     isFavorite: true,
+    points: {
+      id: 2,
+      lat: 52.3909553943508,
+      lng: 4.929309666406198
+    }
   },
   {
     id: 3,
@@ -85,7 +95,7 @@ export const offers: Offer[] = [
       'img/studio-01.jpg',
       'img/room.jpg',
     ],
-    city: 'Brussels',
+    city: 'Amsterdam',
     title: 'Canal View Prinsengracht',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
     rating: 5.0,
@@ -111,6 +121,11 @@ export const offers: Offer[] = [
     },
     isPremium: false,
     isFavorite: true,
+    points: {
+      id: 3,
+      lat: 52.3609553943508,
+      lng: 4.85309666406198
+    }
   },
   {
     id: 4,
@@ -150,5 +165,10 @@ export const offers: Offer[] = [
     },
     isPremium: true,
     isFavorite: true,
+    points: {
+      id: 4,
+      lat: 52.3809553943508,
+      lng: 4.939309666406198
+    }
   },
 ];
