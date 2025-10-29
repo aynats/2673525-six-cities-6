@@ -1,9 +1,20 @@
 import { Helmet } from 'react-helmet-async';
 import { AppRoute } from '../../const';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Form from '../../components/form';
+import ReviewsList from '../../components/reviews-list';
+import { ReviewType } from '../../types/review';
 
-function OfferPage(): JSX.Element {
+type OfferPageProps = {
+  reviews: ReviewType[];
+}
+
+function OfferPage({reviews} : OfferPageProps): JSX.Element {
+  const { id } = useParams();
+  const offerId = Number(id);
+
+  const offerReviews = reviews.filter((review) => review.offerId === offerId);
+
   return (
     <div className='page'>
       <Helmet>
@@ -158,7 +169,7 @@ function OfferPage(): JSX.Element {
                 </div>
               </div>
               <section className='offer__reviews reviews'>
-                <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>1</span></h2>
+                {/* <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>1</span></h2>
                 <ul className='reviews__list'>
                   <li className='reviews__item'>
                     <div className='reviews__user user'>
@@ -182,7 +193,8 @@ function OfferPage(): JSX.Element {
                       <time className='reviews__time' dateTime='2019-04-24'>April 2019</time>
                     </div>
                   </li>
-                </ul>
+                </ul> */}
+                <ReviewsList reviews={offerReviews}/>
                 <Form/>
               </section>
             </div>
