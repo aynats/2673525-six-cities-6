@@ -1,5 +1,8 @@
+import {Point} from './point';
+
 export type Offer = {
   id: number;
+  points: Point;
   city: 'Amsterdam' | 'Paris' | 'Cologne' | 'Brussels' | 'Hamburg' | 'Dusseldorf';
   imageSrc: string[];
   title: string;

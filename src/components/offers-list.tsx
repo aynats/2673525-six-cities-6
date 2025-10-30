@@ -1,14 +1,23 @@
 import CitiesCard from './cities-card';
 import { Offer } from '../types/offer';
-import { useState } from 'react';
+import { MouseEvent } from 'react';
 
 type OffersListProps = {
   offers: Offer[];
+  onListItemHover?: (offerId: string) => void;
 };
 
-function OffersList({ offers } : OffersListProps) : JSX.Element {
-
-  const [, setActiveCardId] = useState<number | null>(null);
+function OffersList({ offers, onListItemHover } : OffersListProps) : JSX.Element {
+  const handleListItemHover = (event: MouseEvent<HTMLElement>) => {
+    if (!onListItemHover) {
+      return;
+    }
+    event.preventDefault();
+    const offerId = event.currentTarget.id;
+    if (offerId) {
+      onListItemHover(offerId);
+    }
+  };
 
   return (
     <>
@@ -24,18 +33,9 @@ function OffersList({ offers } : OffersListProps) : JSX.Element {
           housingType={offer.housingType}
           isFavorite={offer.isFavorite}
           isPremium={offer.isPremium}
-          onMouseEnter={
-            () => {
-              setActiveCardId(offer.id);
-            }
-          }
-          onMouseLeave={
-            () => {
-              setActiveCardId(null);
-            }
-          }
+          onMouseEnter={handleListItemHover}
         />
-      ))}
+      ))};
     </>
   );
 }
