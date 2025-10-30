@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getOfferRoute } from '../const';
 import { MouseEvent } from 'react';
 
-type OfferCardProps =  {
+type OfferCardProps = {
   offer: Offer;
   onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
   className?: string;

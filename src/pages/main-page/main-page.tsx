@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
-import OfferList from '../../components/offer-list-cities';
 import { Link } from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {City} from '../../types/city';

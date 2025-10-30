@@ -8,10 +8,10 @@ type OfferListCitiesProps = {
 
 function OfferListCities({ offers, onListItemHover } : OfferListCitiesProps) : JSX.Element {
   return (
-    <OfferList 
-      offers={offers} 
-      className={'cities'} 
-      tabsContent={true}
+    <OfferList
+      offers={offers}
+      className={'cities'}
+      tabsContent
       onListItemHover={onListItemHover}
     />
   );

@@ -19,7 +19,7 @@ type AppProps = {
 
 function App({city, offers, reviews}: AppProps): JSX.Element {
   const offersCount = offers.length;
-  
+
   return (
     <HelmetProvider>
       <BrowserRouter>

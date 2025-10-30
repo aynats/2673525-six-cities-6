@@ -8,9 +8,9 @@ type OfferListNearPlacesProps = {
 
 function OfferListNearPlaces({ offers, onListItemHover } : OfferListNearPlacesProps) : JSX.Element {
   return (
-    <OfferList 
-      offers={offers} 
-      className={'near-places'} 
+    <OfferList
+      offers={offers}
+      className={'near-places'}
       tabsContent={false}
       onListItemHover={onListItemHover}
     />

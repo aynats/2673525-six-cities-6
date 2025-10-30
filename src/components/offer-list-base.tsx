@@ -14,15 +14,19 @@ type OfferListProps = {
 const getComponentByType = (className: string, offer: Offer, onMouseEnter: (event: MouseEvent<HTMLElement>) => void) => {
   switch (className) {
     case 'cities':
-      return <OfferCardCities 
-        offer={offer} 
-        onMouseEnter={onMouseEnter}
-      />;
+      return (
+        <OfferCardCities
+          offer={offer}
+          onMouseEnter={onMouseEnter}
+        />
+      );
     case 'near-places':
-      return <OfferCardNearPlaces 
-        offer={offer} 
-        onMouseEnter={onMouseEnter}
-      />;
+      return (
+        <OfferCardNearPlaces
+          offer={offer}
+          onMouseEnter={onMouseEnter}
+        />
+      );
   }
 
   return <OfferCard offer={offer} />;
@@ -43,11 +47,12 @@ function OfferList({ offers, onListItemHover, className, tabsContent, } : OfferL
   return (
     <div className={className === 'near-places'
       ? 'near-places__list places__list'
-      : `${className}__places-list places__list${tabsContent ? ' tabs__content' : ''}`}>
+      : `${className}__places-list places__list${tabsContent ? ' tabs__content' : ''}`}
+    >
       {offers.map((offer) => (
-          <div key={offer.id}>
-            {getComponentByType(className, offer, handleListItemHover)}
-          </div>
+        <div key={offer.id}>
+          {getComponentByType(className, offer, handleListItemHover)}
+        </div>
       ))};
     </div>
   );

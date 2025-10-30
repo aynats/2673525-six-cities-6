@@ -3,7 +3,7 @@ import { Offer } from '../types/offer.ts';
 import { MouseEvent } from 'react';
 
 type OfferCardCitiesProps = {
-  offer: Offer; 
+  offer: Offer;
   onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
 };
 

@@ -21,13 +21,14 @@ function OfferPage({reviews, city, offers} : OfferPageProps): JSX.Element {
   const offerId = Number(id);
 
   const offerReviews = reviews.filter((review) => review.offerId === offerId);
-  
+
   const nearbyOffers = offers.filter((offer) => offer.id !== offerId).slice(0, 3);
+
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-    const handleListItemHover = (offerId: string) => {
-      const currentOffer = offers.find((offer) => offer.id.toString() === offerId);
-      setSelectedOffer(currentOffer);
-    };
+  const handleListItemHover = (hoveredOfferId: string) => {
+    const currentOffer = offers.find((offer) => offer.id.toString() === hoveredOfferId);
+    setSelectedOffer(currentOffer);
+  };
 
   return (
     <div className='page'>
@@ -196,9 +197,9 @@ function OfferPage({reviews, city, offers} : OfferPageProps): JSX.Element {
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <OfferListNearPlaces
-                offers={nearbyOffers}
-                onListItemHover={handleListItemHover}
-              />
+              offers={nearbyOffers}
+              onListItemHover={handleListItemHover}
+            />
           </section>
         </div>
       </main>
