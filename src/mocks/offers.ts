@@ -49,8 +49,8 @@ export const offers: Offer[] = [
   {
     id: 2,
     imageSrc: [
-      'img/apartment-01.jpg',
       'img/room.jpg',
+      'img/apartment-01.jpg',
       'img/room.jpg',
       'img/room.jpg',
       'img/studio-01.jpg',
@@ -93,9 +93,9 @@ export const offers: Offer[] = [
   {
     id: 3,
     imageSrc: [
+      'img/apartment-03.jpg',
       'img/apartment-01.jpg',
       'img/room.jpg',
-      'img/apartment-03.jpg',
       'img/room.jpg',
       'img/studio-01.jpg',
       'img/room.jpg',
