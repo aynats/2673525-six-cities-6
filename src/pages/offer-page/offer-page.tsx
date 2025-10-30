@@ -4,16 +4,29 @@ import { Link, useParams } from 'react-router-dom';
 import Form from '../../components/form';
 import ReviewsList from '../../components/reviews-list';
 import { ReviewType } from '../../types/review';
+import Map from '../../components/map';
+import {City} from '../../types/city';
+import { Offer } from '../../types/offer';
+import { useState } from 'react';
 
 type OfferPageProps = {
   reviews: ReviewType[];
+  city: City;
+  offers: Offer[];
 }
 
-function OfferPage({reviews} : OfferPageProps): JSX.Element {
+function OfferPage({reviews, city, offers} : OfferPageProps): JSX.Element {
   const { id } = useParams();
   const offerId = Number(id);
 
   const offerReviews = reviews.filter((review) => review.offerId === offerId);
+  
+  const nearbyOffers = offers.filter((offer) => offer.id !== offerId).slice(0, 3);
+  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+    const handleListItemHover = (offerId: string) => {
+      const currentOffer = offers.find((offer) => offer.id.toString() === offerId);
+      setSelectedOffer(currentOffer);
+    };
 
   return (
     <div className='page'>
@@ -199,7 +212,11 @@ function OfferPage({reviews} : OfferPageProps): JSX.Element {
               </section>
             </div>
           </div>
-          <section className='offer__map map'></section>
+          <section className='offer__map map' style={{ background: 'none' }}>
+            {/*Нужно получать три оффера из моков за исключением текущего включенного. Алгоритм подсветки тот же.
+            Вместо карточек снизу вставить эти офферы*/}
+            <Map city={city} offers={nearbyOffers} selectedPoint={selectedOffer} />
+          </section>
         </section>
         <div className='container'>
           <section className='near-places places'>

@@ -13,12 +13,13 @@ import { ReviewType } from '../../types/review';
 
 type AppProps = {
   city: City;
-  offersCount: number;
   offers: Offer[];
   reviews: ReviewType[];
 }
 
-function App({city, offersCount, offers, reviews}: AppProps): JSX.Element {
+function App({city, offers, reviews}: AppProps): JSX.Element {
+  const offersCount = offers.length;
+  
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -41,7 +42,7 @@ function App({city, offersCount, offers, reviews}: AppProps): JSX.Element {
           />
           <Route
             path={getOfferRoute(':id')}
-            element={<OfferPage reviews={reviews}/>}
+            element={<OfferPage reviews={reviews} city={city} offers={offers}/>}
           />
           <Route
             path= "*"
