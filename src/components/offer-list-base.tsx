@@ -53,7 +53,7 @@ function OfferList({ offers, onListItemHover, className, tabsContent, } : OfferL
         <div key={offer.id}>
           {getComponentByType(className, offer, handleListItemHover)}
         </div>
-      ))};
+      ))}
     </div>
   );
 }
