@@ -1,11 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
-import OffersList from '../../components/offers-list';
+import OfferList from '../../components/offer-list-cities';
 import { Link } from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {City} from '../../types/city';
 import { useState } from 'react';
 import Map from '../../components/map';
+import OfferListCities from '../../components/offer-list-cities';
 
 type MainPageProps = {
   city: City;
@@ -116,12 +117,10 @@ function MainPage({city, offersCount, offers}: MainPageProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <OffersList
-                  offers={offers.filter((offer) => offer.city === city.title)}
-                  onListItemHover={handleListItemHover}
-                />
-              </div>
+              <OfferListCities
+                offers={offers.filter((offer) => offer.city === city.title)}
+                onListItemHover={handleListItemHover}
+              />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" style={{ background: 'none' }}>
