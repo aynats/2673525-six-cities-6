@@ -13,7 +13,9 @@ export const offers: Offer[] = [
     ],
     city: 'Amsterdam',
     title: 'Beautiful & luxurious studio at great location',
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+    description: [
+      'A quaint riverside cottage, hidden behind ivy-covered walls, where the hustle of the city fades. Sunlight filters through large windows, highlighting the original brickwork from the 18th century.',
+    ],
     rating: 4.8,
     housingType: 'Apartament',
     bedroomCount: 3,
@@ -47,8 +49,8 @@ export const offers: Offer[] = [
   {
     id: 2,
     imageSrc: [
-      'img/apartment-01.jpg',
       'img/room.jpg',
+      'img/apartment-01.jpg',
       'img/room.jpg',
       'img/room.jpg',
       'img/studio-01.jpg',
@@ -56,7 +58,10 @@ export const offers: Offer[] = [
     ],
     city: 'Amsterdam',
     title: 'Wood and stone place',
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+    description: [
+      'A peaceful townhouse, nestled in a cobblestone street where the city’s rhythm slows down. Steps from the vibrant market square, yet surrounded by a garden blooming with seasonal flowers.',
+      'An elegant loft, perched above a gentle stream, offering a glimpse of old Amsterdam’s iconic bridges. The interior blends modern comfort with centuries-old wooden beams.',
+    ],
     rating: 4.5,
     housingType: 'Room',
     bedroomCount: 1,
@@ -88,16 +93,18 @@ export const offers: Offer[] = [
   {
     id: 3,
     imageSrc: [
+      'img/apartment-03.jpg',
       'img/apartment-01.jpg',
       'img/room.jpg',
-      'img/apartment-03.jpg',
       'img/room.jpg',
       'img/studio-01.jpg',
       'img/room.jpg',
     ],
     city: 'Amsterdam',
     title: 'Canal View Prinsengracht',
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+    description: [
+      'A charming and serene apartment tucked away along a quiet canal, bathed in the soft glow of Amsterdam’s historic lanterns. The façade dates back to the 17th century, adorned with classic green shutters.',
+    ],
     rating: 5.0,
     housingType: 'Apartament',
     bedroomCount: 2,
@@ -139,7 +146,10 @@ export const offers: Offer[] = [
     ],
     city: 'Amsterdam',
     title: 'Nice, cozy, warm big bed apartment',
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+    description: [
+      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'
+    ],
     rating: 4.7,
     housingType: 'Apartament',
     bedroomCount: 2,
@@ -164,7 +174,7 @@ export const offers: Offer[] = [
       isPremium: false,
     },
     isPremium: true,
-    isFavorite: true,
+    isFavorite: false,
     points: {
       id: 4,
       lat: 52.3809553943508,

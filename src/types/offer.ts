@@ -1,4 +1,4 @@
-import {Point} from './point';
+import { Point } from './point';
 
 export type Offer = {
   id: number;
@@ -6,7 +6,7 @@ export type Offer = {
   city: 'Amsterdam' | 'Paris' | 'Cologne' | 'Brussels' | 'Hamburg' | 'Dusseldorf';
   imageSrc: string[];
   title: string;
-  description: string;
+  description: string[];
   rating: number;
   housingType: 'Apartament' | 'Room';
   bedroomCount: number;
