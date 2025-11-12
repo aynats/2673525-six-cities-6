@@ -5,7 +5,6 @@ import Form from '../../components/form';
 import ReviewsList from '../../components/reviews-list';
 import { ReviewType } from '../../types/review';
 import Map from '../../components/map';
-import {City} from '../../types/city';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
 import OfferListNearPlaces from '../../components/offer-list-near-places';
@@ -31,18 +30,18 @@ function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
     setSelectedOffer(currentHoveredOffer);
   };
 
-  const city = currentOffer ? 
+  const city = currentOffer ?
     {
-      title: currentOffer.city, 
+      title: currentOffer.city,
       lat: currentOffer.points.lat,
       lng: currentOffer.points.lng,
       zoom: 13
     } :
     {
-    title: 'Paris',
-    lat: 48.85661,
-    lng: 2.351499,
-    zoom: 13
+      title: 'Paris',
+      lat: 48.85661,
+      lng: 2.351499,
+      zoom: 13
     };
 
   if (!currentOffer) {

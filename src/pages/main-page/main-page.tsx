@@ -14,7 +14,7 @@ function MainPage(): JSX.Element {
   const dispatch = useDispatch();
   const currentCity = useSelector((state: State) => state.city);
   const allOffers = useSelector((state: State) => state.offers);
-  
+
   const cityOffers = allOffers.filter((offer) => offer.city === currentCity.title);
   const offersCount = cityOffers.length;
 
@@ -22,7 +22,7 @@ function MainPage(): JSX.Element {
   const favoriteCount = favoriteOffers.length;
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-  
+
   const handleListItemHover = (offerId: string) => {
     const currentOffer = cityOffers.find((offer) => offer.id.toString() === offerId);
     setSelectedOffer(currentOffer);
@@ -68,7 +68,7 @@ function MainPage(): JSX.Element {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesList 
+        <CitiesList
           cities={CITIES}
           currentCity={currentCity}
           onCityChange={handleCityChange}
