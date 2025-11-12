@@ -13,11 +13,10 @@ import OfferDescription from './offer-description';
 
 type OfferPageProps = {
   reviews: ReviewType[];
-  city: City;
   offers: Offer[];
 }
 
-function OfferPage({reviews, city, offers} : OfferPageProps): JSX.Element {
+function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
   const { id } = useParams();
   const offerId = Number(id);
 
@@ -31,6 +30,24 @@ function OfferPage({reviews, city, offers} : OfferPageProps): JSX.Element {
     const currentHoveredOffer = offers.find((offer) => offer.id.toString() === hoveredOfferId);
     setSelectedOffer(currentHoveredOffer);
   };
+
+  const city = currentOffer ? 
+    {
+      title: currentOffer.city, 
+      lat: currentOffer.points.lat,
+      lng: currentOffer.points.lng,
+      zoom: 13
+    } :
+    {
+    title: 'Paris',
+    lat: 48.85661,
+    lng: 2.351499,
+    zoom: 13
+    };
+
+  if (!currentOffer) {
+    return <div>Offer not found</div>;
+  }
 
   return (
     <div className='page'>

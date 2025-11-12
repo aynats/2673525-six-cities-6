@@ -7,18 +7,12 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route';
-import {Offer} from '../../types/offer';
-import {City} from '../../types/city';
-import { ReviewType } from '../../types/review';
+import { useSelector } from 'react-redux';
+import { State } from '../../types/state';
 
-type AppProps = {
-  city: City;
-  offers: Offer[];
-  reviews: ReviewType[];
-}
-
-function App({city, offers, reviews}: AppProps): JSX.Element {
-  const offersCount = offers.length;
+function App(): JSX.Element {
+  const offers = useSelector((state: State) => state.offers);
+  const reviews = useSelector((state: State) => state.reviews);
 
   return (
     <HelmetProvider>
@@ -26,7 +20,7 @@ function App({city, offers, reviews}: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Root}
-            element={<MainPage city={city} offersCount={offersCount} offers={offers}/>}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
@@ -42,7 +36,7 @@ function App({city, offers, reviews}: AppProps): JSX.Element {
           />
           <Route
             path={getOfferRoute(':id')}
-            element={<OfferPage reviews={reviews} city={city} offers={offers}/>}
+            element={<OfferPage reviews={reviews} offers={offers}/>}
           />
           <Route
             path= "*"
