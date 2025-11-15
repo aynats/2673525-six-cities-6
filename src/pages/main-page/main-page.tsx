@@ -1,26 +1,35 @@
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
-import {AppRoute} from '../../const';
-import {City} from '../../types/city';
+import {AppRoute, CITIES} from '../../const';
 import { useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
+import CitiesList from '../../components/cities-list';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../types/state';
+import { changeCity } from '../../store/action';
 
-type MainPageProps = {
-  city: City;
-  offersCount: number;
-  offers: Offer[];
-}
+function MainPage(): JSX.Element {
+  const dispatch = useDispatch();
+  const currentCity = useSelector((state: State) => state.city);
+  const allOffers = useSelector((state: State) => state.offers);
 
-function MainPage({city, offersCount, offers}: MainPageProps): JSX.Element {
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const cityOffers = allOffers.filter((offer) => offer.city === currentCity.title);
+  const offersCount = cityOffers.length;
+
+  const favoriteOffers = allOffers.filter((offer) => offer.isFavorite);
   const favoriteCount = favoriteOffers.length;
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
+
   const handleListItemHover = (offerId: string) => {
-    const currentOffer = offers.find((offer) => offer.id.toString() === offerId);
+    const currentOffer = cityOffers.find((offer) => offer.id.toString() === offerId);
     setSelectedOffer(currentOffer);
+  };
+
+  const handleCityChange = (city: typeof CITIES[0]) => {
+    dispatch(changeCity(city));
   };
 
   return (
@@ -59,47 +68,16 @@ function MainPage({city, offersCount, offers}: MainPageProps): JSX.Element {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
-                  <span>Paris</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
-                  <span>Cologne</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
-                  <span>Brussels</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item tabs__item--active" to={AppRoute.Root}>
-                  <span>Amsterdam</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
-                  <span>Hamburg</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.Root}>
-                  <span>Dusseldorf</span>
-                </Link>
-              </li>
-            </ul>
-          </section>
-        </div>
+        <CitiesList
+          cities={CITIES}
+          currentCity={currentCity}
+          onCityChange={handleCityChange}
+        />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in {city.title}</b>
+              <b className="places__found">{offersCount} places to stay in {currentCity.title}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 {' '}
@@ -117,13 +95,13 @@ function MainPage({city, offersCount, offers}: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <OfferListCities
-                offers={offers.filter((offer) => offer.city === city.title)}
+                offers={cityOffers}
                 onListItemHover={handleListItemHover}
               />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" style={{ background: 'none' }}>
-                <Map city={city} offers={offers} selectedPoint={selectedOffer} />
+                <Map city={currentCity} offers={cityOffers} selectedPoint={selectedOffer} />
               </section>
             </div>
           </div>
