@@ -6,15 +6,16 @@ import { useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
 import CitiesList from '../../components/cities-list';
-import { useDispatch, /*useSelector */} from 'react-redux';
-//import { State } from '../../types/state';
+// import { useDispatch, /*useSelector */} from 'react-redux';
+// import { State } from '../../types/state';
 import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import Header from '../../components/header';
 //import { RootState } from '../../store';
 
 function MainPage(): JSX.Element {
-
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const currentCity = useAppSelector((state) => state.city);
   const allOffers = useAppSelector((state) => state.offers);
 
@@ -26,8 +27,8 @@ function MainPage(): JSX.Element {
     dispatch(changeCity(city));
   };
 
-  const favoriteOffers = allOffers.filter((offer) => offer.isFavorite);
-  const favoriteCount = favoriteOffers.length;
+  // const favoriteOffers = allOffers.filter((offer) => offer.isFavorite);
+  // const favoriteCount = favoriteOffers.length;
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
@@ -41,34 +42,8 @@ function MainPage(): JSX.Element {
       <Helmet>
         <title>{'6 cities'}</title>
       </Helmet>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">{favoriteCount}</span>
-                  </Link>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      
+      <Header />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
