@@ -30,18 +30,15 @@ function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
     setSelectedOffer(currentHoveredOffer);
   };
 
-  const city = currentOffer ?
-    {
-      title: currentOffer.city,
-      lat: currentOffer.points.lat,
-      lng: currentOffer.points.lng,
-      zoom: 13
-    } :
-    {
-      title: 'Paris',
-      lat: 48.85661,
-      lng: 2.351499,
-      zoom: 13
+  const city = currentOffer
+    ? currentOffer.city
+    : {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      },
     };
 
   if (!currentOffer) {

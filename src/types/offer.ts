@@ -1,9 +1,16 @@
-import { Point } from './point';
+import { Location } from './location';
 
 export type Offer = {
   id: number;
-  points: Point;
-  city: 'Amsterdam' | 'Paris' | 'Cologne' | 'Brussels' | 'Hamburg' | 'Dusseldorf';
+  location: Location;
+  city: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      zoom: number;
+    };
+  };
   imageSrc: string[];
   title: string;
   description: string[];
