@@ -10,13 +10,13 @@ import { useDispatch, /*useSelector */} from 'react-redux';
 //import { State } from '../../types/state';
 import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { RootState } from '../../store';
+//import { RootState } from '../../store';
 
 function MainPage(): JSX.Element {
 
   const dispatch = useDispatch();
-  const currentCity = useAppSelector((state : RootState) => state.city);
-  const allOffers = useAppSelector((state : RootState) => state.offers);
+  const currentCity = useAppSelector((state) => state.city);
+  const allOffers = useAppSelector((state) => state.offers);
 
   const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
   const offersCount = cityOffers.length;
