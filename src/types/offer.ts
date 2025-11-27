@@ -2,7 +2,9 @@ import { Location } from './location';
 
 export type Offer = {
   id: number;
-  location: Location;
+  title: string;
+  housingType: string;
+  price: number;
   city: {
     name: string;
     location: {
@@ -11,24 +13,22 @@ export type Offer = {
       zoom: number;
     };
   };
-  imageSrc: string[];
-  title: string;
-  description: string[];
+  location: Location;
   rating: number;
-  housingType: 'Apartament' | 'Room';
-  bedroomCount: number;
-  adultsCount: number;
-  price: number;
-  benefits: OfferBenefits;
+  description: string[];
+  images: string[];
+  bedrooms: number;
+  goods: Goods;
+  maxAdults: number;
   host: Host;
   isPremium?: boolean;
   isFavorite?: boolean;
 };
 
-type OfferBenefits = string[];
+type Goods = string[];
 
 type Host = {
     name: string;
-    photo: string;
-    isPremium?: boolean;
+    avatarUrl: string;
+    isPro?: boolean;
 };

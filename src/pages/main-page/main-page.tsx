@@ -18,7 +18,7 @@ function MainPage(): JSX.Element {
   const currentCity = useAppSelector((state : RootState) => state.city);
   const allOffers = useAppSelector((state : RootState) => state.offers);
 
-  const cityOffers = allOffers.filter((offer) => offer.city === currentCity);
+  const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
   const offersCount = cityOffers.length;
 
   const cities = Array.from(new Set(allOffers.map((offer) => offer.city)));
