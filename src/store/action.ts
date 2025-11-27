@@ -13,3 +13,6 @@ export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersD
 export const loadReviews = createAction<ReviewType[]>('data/loadReviews');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+
+export const setError = createAction<string | null>('site/setError');
+

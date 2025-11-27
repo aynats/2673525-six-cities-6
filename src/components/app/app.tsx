@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
-import {AppRoute, getOfferRoute} from '../../const';
+import {AppRoute, AuthorizationStatus, getOfferRoute} from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
@@ -25,8 +25,9 @@ function App(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const reviews = useAppSelector((state) => state.reviews);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  if (/* authorizationStatus === AuthorizationStatus.Unknown ||*/ isOffersDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (
       <LoadingPage />
     );
@@ -47,7 +48,10 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute redirectTo = {AppRoute.Login}>
+              <PrivateRoute
+                authorizationStatus={authorizationStatus}
+                redirectTo={AppRoute.Login}
+              >
                 <FavoritesPage offers={offers}/>
               </PrivateRoute>
             }
