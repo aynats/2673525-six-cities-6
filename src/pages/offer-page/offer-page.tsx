@@ -5,10 +5,13 @@ import ReviewsList from '../../components/reviews-list';
 import { ReviewType } from '../../types/review';
 import Map from '../../components/map';
 import { Offer } from '../../types/offer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import OfferListNearPlaces from '../../components/offer-list-near-places';
 import OfferDescription from './offer-description';
 import Header from '../../components/header/header';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { fetchOfferAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks/use-app-selector';
 
 type OfferPageProps = {
   reviews: ReviewType[];
@@ -16,13 +19,26 @@ type OfferPageProps = {
 }
 
 function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  
   const { id } = useParams();
-  const offerId = Number(id);
 
-  const offerReviews = reviews.filter((review) => review.offerId === offerId);
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOfferAction(id));
+      console.log('ЕПТА', offer);
+    }
+  }, [id, dispatch]);
 
-  const currentOffer = offers.find((offer) => offer.id === offerId);
-  const nearbyOffers = offers.filter((offer) => offer.id !== offerId).slice(0, 3);
+  const offer = useAppSelector((state) => state.offer);
+  console.log('KKKKK', offer);
+  const offerId = id;
+
+  const offerReviews = reviews.filter((review) => review.offerId === offerId); // !!
+  const currentOffer = useAppSelector((state) => state.offer);
+
+  //const currentOffer = offers.find((offer) => offer.id === offerId);
+  const nearbyOffers = offers.filter((offer) => offer.id !== offerId).slice(0, 3); // !!
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const handleListItemHover = (hoveredOfferId: string) => {

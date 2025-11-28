@@ -29,6 +29,17 @@ export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
   }
 );
 
+export const fetchOfferAction = createAsyncThunk<Offer, string, {
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffer',
+  async (offerId, { extra: api }) => {
+    const { data } = await api.get<Offer>(`${APIRoute.Offer}/${offerId}`);
+    console.log('BABABA', data)
+    return data;
+  }
+);
+
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(

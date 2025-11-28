@@ -15,7 +15,7 @@ export type Offer = {
   };
   location: Location;
   rating: number;
-  description: string[];
+  description: string;
   images: string[];
   bedrooms: number;
   goods: Goods;

@@ -71,11 +71,9 @@ function OfferDescription({ offer } : OfferDescriptionProps) : JSX.Element {
           )}
         </div>
         <div className='offer__description'>
-          {offer.description.map((description) => (
-            <p className='offer__text' key={description}>
-              {description}
+            <p className='offer__text'>
+              {offer.description}
             </p>
-          ))}
         </div>
       </div>
     </>

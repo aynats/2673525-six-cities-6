@@ -6,10 +6,12 @@ import {ReviewType} from '../types/review';
 import { City } from '../types/city';
 import { UserData } from '../types/user-data';
 import { AuthorizationStatus } from '../const';
+import { fetchOffersAction, fetchOfferAction } from './api-actions';
 
 type InitialState = {
   city: City;
   offers: Offer[];
+  offer: Offer | null;
   reviews: ReviewType[];
   isOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
@@ -19,14 +21,15 @@ type InitialState = {
 
 const initialState : InitialState = {
   city: {
-    name: '',
+    name: 'Paris',
     location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 0,
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13,
     }
   },
   offers: [],
+  offer: null,
   reviews: [],
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -58,6 +61,15 @@ const reducer = createReducer(initialState, (builder) => {
 
     .addCase(setUserData, (state, action) => {
       state.user = action.payload;
+    })
+    
+    .addCase(fetchOffersAction.fulfilled, (state, action) => {
+      state.offers = action.payload;
+    })
+
+    .addCase(fetchOfferAction.fulfilled, (state, action) => {
+      console.log('LLLL', action);
+      state.offer = action.payload;
     })
 
     .addCase(setError, (state, action) => {
