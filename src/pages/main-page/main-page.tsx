@@ -1,18 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
-//import { Link } from 'react-router-dom';
-//import {AppRoute, /*CITIES*/} from '../../const';
 import { useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
 import CitiesList from '../../components/cities-list';
-// import { useDispatch, /*useSelector */} from 'react-redux';
-// import { State } from '../../types/state';
 import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import Header from '../../components/header/header';
-//import { RootState } from '../../store';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,9 +21,6 @@ function MainPage(): JSX.Element {
   const handleCityChange = (city: typeof cities[0]) => {
     dispatch(changeCity(city));
   };
-
-  // const favoriteOffers = allOffers.filter((offer) => offer.isFavorite);
-  // const favoriteCount = favoriteOffers.length;
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 

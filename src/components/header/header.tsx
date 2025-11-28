@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, /*CITIES*/} from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { logoutAction } from '../../store/api-actions';
