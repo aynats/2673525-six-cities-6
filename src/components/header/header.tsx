@@ -13,7 +13,7 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
 
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const favoriteCount = useAppSelector((state) => state.offers.filter(o => o.isFavorite).length);
+  const favoriteCount = useAppSelector((state) => state.offers.filter((o) => o.isFavorite).length);
   const user = useAppSelector((state) => state.user);
 
   const handleLogout = () => {
@@ -31,27 +31,26 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
             </Link>
           </div>
-           {!isLoginPage && (
-          <nav className="header__nav">
-            <ul className="header__nav-list">
-              {isAuth ? (
-                <>  
-                  <li className="header__nav-item user">
-                    <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">{user?.email}</span>
-                      <span className="header__favorite-count">{favoriteCount}</span>
-                    </Link>
-                  </li>
-                  <li className="header__nav-item">
-                    <button className="header__nav-link header__signout-button" onClick={handleLogout}>
-                      <span className="header__signout">Sign out</span>
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <>
+          {!isLoginPage && (
+            <nav className="header__nav">
+              <ul className="header__nav-list">
+                {isAuth ? (
+                  <>
+                    <li className="header__nav-item user">
+                      <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        </div>
+                        <span className="header__user-name user__name">{user?.email}</span>
+                        <span className="header__favorite-count">{favoriteCount}</span>
+                      </Link>
+                    </li>
+                    <li className="header__nav-item">
+                      <button className="header__nav-link header__signout-button" onClick={handleLogout}>
+                        <span className="header__signout">Sign out</span>
+                      </button>
+                    </li>
+                  </>
+                ) : (
                   <li className="header__nav-item user">
                     <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
                       <div className="header__avatar-wrapper user__avatar-wrapper">
@@ -59,11 +58,9 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
                       <span className="header__login">Sign in</span>
                     </Link>
                   </li>
-                </>
-              )
-            }
-            </ul>
-          </nav>
+                )}
+              </ul>
+            </nav>
           )}
         </div>
       </div>

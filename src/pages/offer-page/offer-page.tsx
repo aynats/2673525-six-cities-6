@@ -50,7 +50,7 @@ function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
       <Helmet>
         <title>{'6 cities — offer'}</title>
       </Helmet>
-      
+
       <Header/>
 
       <main className='page__main page__main--offer'>

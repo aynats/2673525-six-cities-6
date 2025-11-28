@@ -23,7 +23,7 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
       <Helmet>
         <title>{'6 cities — favorites'}</title>
       </Helmet>
-      
+
       <Header/>
 
       <main className="page__main page__main--favorites">

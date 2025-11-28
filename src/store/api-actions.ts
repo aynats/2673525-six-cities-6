@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
-import { AxiosInstance } from 'axios';
+import { AxiosInstance, isAxiosError } from 'axios';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
@@ -53,8 +53,12 @@ export const loginAction = createAsyncThunk<void, AuthData, {
       saveToken(data.token);
       dispatch(setUserData(data));
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    } catch (error: any) {
-      const message = error.response?.data?.message || 'Ошибка авторизации';
+    } catch (error: unknown) {
+      let message = 'Ошибка авторизации';
+
+      if (isAxiosError(error) && error.response) {
+        message = (error.response.data as { message: string }).message || message;
+      }
       dispatch(setError(message));
       return rejectWithValue(message);
     }

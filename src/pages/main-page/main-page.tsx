@@ -34,7 +34,7 @@ function MainPage(): JSX.Element {
       <Helmet>
         <title>{'6 cities'}</title>
       </Helmet>
-      
+
       <Header />
 
       <main className="page__main page__main--index">

@@ -9,7 +9,7 @@ function NotFoundPage(): JSX.Element {
       <Helmet>
         <title>{'6 cities — 404'}</title>
       </Helmet>
-      
+
       <Header/>
 
       <main className="page__main page__main--not-found">

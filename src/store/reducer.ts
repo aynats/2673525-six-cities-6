@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffers, loadReviews, setOffersDataLoadingStatus, 
+import {changeCity, loadOffers, loadReviews, setOffersDataLoadingStatus,
   requireAuthorization, setError, setUserData } from './action';
 import {Offer} from '../types/offer';
 import {ReviewType} from '../types/review';
