@@ -12,7 +12,7 @@ import { type City } from '../../types/city';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  
+
   const currentCity = useAppSelector((state) => state.city);
   const allOffers = useAppSelector((state) => state.offers);
 

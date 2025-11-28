@@ -15,7 +15,7 @@ function CitiesList({ cities, currentCity, onCityChange }: CitiesListProps): JSX
           {cities.map((city) => (
             <li key={city.name} className="locations__item">
               <a
-                className={cn('locations__item-link tabs__item', 
+                className={cn('locations__item-link tabs__item',
                   {
                     'tabs__item--active': city.name === currentCity.name
                   }
