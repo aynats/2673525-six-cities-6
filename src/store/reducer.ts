@@ -1,25 +1,28 @@
-import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffers, loadReviews, setOffersDataLoadingStatus,
-  requireAuthorization, setError, setUserData } from './action';
-import {Offer} from '../types/offer';
-import {ReviewType} from '../types/review';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  changeCity, loadOffers, loadReviews, setOffersDataLoadingStatus,
+  requireAuthorization, setError, setUserData
+} from './action';
+import { Offer } from '../types/offer';
+import { ReviewType } from '../types/review';
 import { City } from '../types/city';
 import { UserData } from '../types/user-data';
 import { AuthorizationStatus } from '../const';
-import { fetchOffersAction, fetchOfferAction, fetchReviewsAction } from './api-actions';
+import { fetchOffersAction, fetchOfferAction, fetchReviewsAction, fetchNearbyAction } from './api-actions';
 
 type InitialState = {
   city: City;
   offers: Offer[];
   offer: Offer | null;
   reviews: ReviewType[];
+  nearby: Offer[];
   isOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   user: UserData | null;
   error: string | null;
 }
 
-const initialState : InitialState = {
+const initialState: InitialState = {
   city: {
     name: 'Paris',
     location: {
@@ -31,6 +34,7 @@ const initialState : InitialState = {
   offers: [],
   offer: null,
   reviews: [],
+  nearby: [],
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
@@ -62,7 +66,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setUserData, (state, action) => {
       state.user = action.payload;
     })
-    
+
     .addCase(fetchOffersAction.fulfilled, (state, action) => {
       state.offers = action.payload;
     })
@@ -73,6 +77,10 @@ const reducer = createReducer(initialState, (builder) => {
 
     .addCase(fetchReviewsAction.fulfilled, (state, action) => {
       state.reviews = action.payload;
+    })
+
+    .addCase(fetchNearbyAction.fulfilled, (state, action) => {
+      state.nearby = action.payload;
     })
 
     .addCase(setError, (state, action) => {

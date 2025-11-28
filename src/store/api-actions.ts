@@ -50,6 +50,16 @@ export const fetchReviewsAction = createAsyncThunk<ReviewType[], string, {
   }
 );
 
+export const fetchNearbyAction = createAsyncThunk<Offer[], string, {
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearby',
+  async (offerId, { extra: api }) => {
+    const { data } = await api.get<Offer[]>(`${APIRoute.Nearby}/${offerId}/nearby`);
+    return data;
+  }
+);
+
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(

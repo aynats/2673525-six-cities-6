@@ -9,7 +9,7 @@ import OfferListNearPlaces from '../../components/offer-list-near-places';
 import OfferDescription from './offer-description';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
+import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
 
 type OfferPageProps = {
@@ -25,14 +25,13 @@ function OfferPage({offers} : OfferPageProps): JSX.Element {
     if (id) {
       dispatch(fetchOfferAction(id));
       dispatch(fetchReviewsAction(id));
+      dispatch(fetchNearbyAction(id));
     }
   }, [id, dispatch]);
-  
+
   const currentOffer = useAppSelector((state) => state.offer);
   const offerReviews = useAppSelector((state) => state.reviews);
-
-  //const currentOffer = offers.find((offer) => offer.id === offerId);
-  const nearbyOffers: Offer[] = []; // offers.filter((offer) => offer.id !== offerId).slice(0, 3); // !!
+  const nearbyOffers = useAppSelector((state) => state.nearby).slice(0, 3);
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const handleListItemHover = (hoveredOfferId: string) => {
