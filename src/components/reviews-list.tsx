@@ -1,5 +1,5 @@
 import Review from './review';
-import { ReviewType } from '../types/review';
+import { type ReviewType } from '../types/review';
 // import { MouseEvent } from 'react';
 
 type ReviewsListProps = {

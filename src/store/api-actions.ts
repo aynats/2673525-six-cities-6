@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Offer } from '../types/offer';
+import { type Offer } from '../types/offer';
 import { AxiosInstance, isAxiosError } from 'axios';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { AuthData } from '../types/auth-data';
-import { UserData } from '../types/user-data';
+import { type AuthData } from '../types/auth-data';
+import { type UserData } from '../types/user-data';
 import { requireAuthorization, setError, setOffersDataLoadingStatus, setUserData } from './action';
 import { dropToken, saveToken } from '../services/token';
-import { ReviewType } from '../types/review';
+import { type ReviewType } from '../types/review';
 
 export const clearErrorAction = createAsyncThunk(
   'site/clearError',

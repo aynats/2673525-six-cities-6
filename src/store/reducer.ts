@@ -3,10 +3,10 @@ import {
   changeCity, loadOffers, loadReviews, setOffersDataLoadingStatus,
   requireAuthorization, setError, setUserData
 } from './action';
-import { Offer } from '../types/offer';
-import { ReviewType } from '../types/review';
-import { City } from '../types/city';
-import { UserData } from '../types/user-data';
+import { type Offer } from '../types/offer';
+import { type ReviewType } from '../types/review';
+import { type City } from '../types/city';
+import { type UserData } from '../types/user-data';
 import { AuthorizationStatus } from '../const';
 import { fetchOffersAction, fetchOfferAction, fetchReviewsAction, fetchNearbyAction } from './api-actions';
 

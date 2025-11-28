@@ -1,4 +1,4 @@
-import { Offer } from '../types/offer';
+import { type Offer } from '../types/offer';
 import { Link } from 'react-router-dom';
 import { getOfferRoute } from '../const';
 import { MouseEvent } from 'react';

@@ -1,5 +1,5 @@
 import OfferCard from './offer-card-base';
-import { Offer } from '../types/offer';
+import { type Offer } from '../types/offer';
 import { MouseEvent } from 'react';
 import OfferCardCities from './offer-card-cities';
 import OfferCardNearPlaces from './offer-card-near-places';

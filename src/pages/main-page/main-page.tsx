@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
+import { type Offer } from '../../types/offer';
 import { useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
@@ -8,7 +8,7 @@ import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import Header from '../../components/header/header';
-import { City } from '../../types/city';
+import { type City } from '../../types/city';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();

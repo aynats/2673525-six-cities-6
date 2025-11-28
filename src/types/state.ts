@@ -1,7 +1,7 @@
 // import { AuthorizationStatus } from '../const';
-// import { City } from './city';
+// import { type City } from './city';
 // import { Offer } from './offer';
-// import { ReviewType } from './review';
+// import { type ReviewType } from './review';
 
 // export type State = {
 //   city: City;
