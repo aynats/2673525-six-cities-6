@@ -68,7 +68,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
 
     .addCase(fetchOfferAction.fulfilled, (state, action) => {
-      console.log('LLLL', action);
       state.offer = action.payload;
     })
 
