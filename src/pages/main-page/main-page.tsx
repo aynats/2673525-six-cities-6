@@ -12,10 +12,10 @@ import { type City } from '../../types/city';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  
   const currentCity = useAppSelector((state) => state.city);
   const allOffers = useAppSelector((state) => state.offers);
-  // console.log(allOffers);
-  // console.log('iiiii ', currentCity);
+
   const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
   const offersCount = cityOffers.length;
 
@@ -26,8 +26,6 @@ function MainPage(): JSX.Element {
   });
 
   const cities = Object.values(uniqueCities);
-
-  //console.log(cities);
 
   const handleCityChange = (city: typeof cities[0]) => {
     dispatch(changeCity(city));
