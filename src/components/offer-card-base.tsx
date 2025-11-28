@@ -10,7 +10,7 @@ type OfferCardProps = {
 };
 
 function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Element {
-  const mainPhoto = offer.imageSrc[0] || '';
+  const mainPhoto = offer.images[0] || '';
   const offerRoute = getOfferRoute(offer.id);
 
   return (

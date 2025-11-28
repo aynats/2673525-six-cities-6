@@ -32,7 +32,7 @@ function Map({city, offers, selectedPoint}: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      map.setView([city.lat, city.lng], city.zoom);
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
     }
   }, [map, city]);
 
@@ -41,13 +41,15 @@ function Map({city, offers, selectedPoint}: MapProps): JSX.Element {
       const markerLayer = layerGroup().addTo(map);
       offers.forEach((offer) => {
         const marker = new Marker({
-          lat: offer.points.lat,
-          lng: offer.points.lng
+          lat: offer.location.latitude,
+          lng: offer.location.longitude
         });
 
         marker
           .setIcon(
-            selectedPoint !== undefined && offer.points.id === selectedPoint.points.id
+            selectedPoint !== undefined
+            && offer.location.latitude === selectedPoint.location.latitude
+            && offer.location.longitude === selectedPoint.location.longitude
               ? currentCustomIcon
               : defaultCustomIcon
           )

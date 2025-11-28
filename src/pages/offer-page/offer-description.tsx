@@ -35,10 +35,10 @@ function OfferDescription({ offer } : OfferDescriptionProps) : JSX.Element {
           {offer.housingType}
         </li>
         <li className='offer__feature offer__feature--bedrooms'>
-          {offer.bedroomCount} {offer.bedroomCount !== 1 ? 'Bedrooms' : 'Bedroom'}
+          {offer.bedrooms} {offer.bedrooms !== 1 ? 'Bedrooms' : 'Bedroom'}
         </li>
         <li className='offer__feature offer__feature--adults'>
-                    Max {offer.adultsCount} adults
+                    Max {offer.maxAdults} adults
         </li>
       </ul>
       <div className='offer__price'>
@@ -48,7 +48,7 @@ function OfferDescription({ offer } : OfferDescriptionProps) : JSX.Element {
       <div className='offer__inside'>
         <h2 className='offer__inside-title'>What&apos;s inside</h2>
         <ul className='offer__inside-list'>
-          {offer.benefits.map((benefit) => (
+          {offer.goods.map((benefit) => (
             <li className='offer__inside-item' key={benefit}>
               {benefit}
             </li>
@@ -59,12 +59,12 @@ function OfferDescription({ offer } : OfferDescriptionProps) : JSX.Element {
         <h2 className='offer__host-title'>Meet the host</h2>
         <div className='offer__host-user user'>
           <div className='offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper'>
-            <img className='offer__avatar user__avatar' src={offer.host.photo} width='74' height='74' alt='Host avatar' />
+            <img className='offer__avatar user__avatar' src={offer.host.avatarUrl} width='74' height='74' alt='Host avatar' />
           </div>
           <span className='offer__user-name'>
             {offer.host.name}
           </span>
-          {offer.host.isPremium && (
+          {offer.host.isPro && (
             <span className='offer__user-status'>
                             Pro
             </span>

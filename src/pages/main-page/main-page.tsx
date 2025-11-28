@@ -1,22 +1,30 @@
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
-import {AppRoute, CITIES} from '../../const';
+import {AppRoute, /*CITIES*/} from '../../const';
 import { useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
 import CitiesList from '../../components/cities-list';
-import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../../types/state';
+import { useDispatch, /*useSelector */} from 'react-redux';
+//import { State } from '../../types/state';
 import { changeCity } from '../../store/action';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { RootState } from '../../store';
 
 function MainPage(): JSX.Element {
-  const dispatch = useDispatch();
-  const currentCity = useSelector((state: State) => state.city);
-  const allOffers = useSelector((state: State) => state.offers);
 
-  const cityOffers = allOffers.filter((offer) => offer.city === currentCity.title);
+  const dispatch = useDispatch();
+  const currentCity = useAppSelector((state : RootState) => state.city);
+  const allOffers = useAppSelector((state : RootState) => state.offers);
+
+  const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
   const offersCount = cityOffers.length;
+
+  const cities = Array.from(new Set(allOffers.map((offer) => offer.city)));
+  const handleCityChange = (city: typeof cities[0]) => {
+    dispatch(changeCity(city));
+  };
 
   const favoriteOffers = allOffers.filter((offer) => offer.isFavorite);
   const favoriteCount = favoriteOffers.length;
@@ -26,10 +34,6 @@ function MainPage(): JSX.Element {
   const handleListItemHover = (offerId: string) => {
     const currentOffer = cityOffers.find((offer) => offer.id.toString() === offerId);
     setSelectedOffer(currentOffer);
-  };
-
-  const handleCityChange = (city: typeof CITIES[0]) => {
-    dispatch(changeCity(city));
   };
 
   return (
@@ -69,7 +73,7 @@ function MainPage(): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList
-          cities={CITIES}
+          cities={cities}
           currentCity={currentCity}
           onCityChange={handleCityChange}
         />
@@ -77,7 +81,7 @@ function MainPage(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in {currentCity.title}</b>
+              <b className="places__found">{offersCount} places to stay in {currentCity.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 {' '}

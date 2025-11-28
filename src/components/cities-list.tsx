@@ -12,10 +12,10 @@ function CitiesList({ cities, currentCity, onCityChange }: CitiesListProps): JSX
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {cities.map((city) => (
-            <li key={city.title} className="locations__item">
+            <li key={city.name} className="locations__item">
               <a
                 className={`locations__item-link tabs__item ${
-                  city.title === currentCity.title ? 'tabs__item--active' : ''
+                  city.name === currentCity.name ? 'tabs__item--active' : ''
                 }`}
                 href="#"
                 onClick={(e) => {
@@ -23,7 +23,7 @@ function CitiesList({ cities, currentCity, onCityChange }: CitiesListProps): JSX
                   onCityChange(city);
                 }}
               >
-                <span>{city.title}</span>
+                <span>{city.name}</span>
               </a>
             </li>
           ))}
