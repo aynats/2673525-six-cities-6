@@ -20,7 +20,6 @@ function App(): JSX.Element {
   }, [dispatch]);
 
   const offers = useAppSelector((state) => state.offers);
-  const reviews = useAppSelector((state) => state.reviews);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
@@ -55,7 +54,7 @@ function App(): JSX.Element {
           />
           <Route
             path={getOfferRoute(':id')}
-            element={<OfferPage reviews={reviews} offers={offers}/>}
+            element={<OfferPage />}
           />
           <Route
             path= "*"

@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import Form from '../../components/form';
 import ReviewsList from '../../components/reviews-list';
 import Map from '../../components/map';
-import { Offer } from '../../types/offer';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import OfferListNearPlaces from '../../components/offer-list-near-places';
 import OfferDescription from './offer-description';
 import Header from '../../components/header/header';
@@ -12,11 +11,7 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
 
-type OfferPageProps = {
-  offers: Offer[];
-}
-
-function OfferPage({offers} : OfferPageProps): JSX.Element {
+function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
   
   const { id } = useParams();
@@ -32,12 +27,6 @@ function OfferPage({offers} : OfferPageProps): JSX.Element {
   const currentOffer = useAppSelector((state) => state.offer);
   const offerReviews = useAppSelector((state) => state.reviews);
   const nearbyOffers = useAppSelector((state) => state.nearby).slice(0, 3);
-
-  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
-  const handleListItemHover = (hoveredOfferId: string) => {
-    const currentHoveredOffer = offers.find((offer) => offer.id.toString() === hoveredOfferId);
-    setSelectedOffer(currentHoveredOffer);
-  };
 
   const city = currentOffer
     ? currentOffer.city
@@ -96,16 +85,13 @@ function OfferPage({offers} : OfferPageProps): JSX.Element {
             </div>
           </div>
           <section className='offer__map map' style={{ background: 'none' }}>
-            <Map city={city} offers={nearbyOffers} selectedPoint={selectedOffer} />
+            <Map city={city} offers={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} />
           </section>
         </section>
         <div className='container'>
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
-            <OfferListNearPlaces
-              offers={nearbyOffers}
-              onListItemHover={handleListItemHover}
-            />
+            <OfferListNearPlaces offers={nearbyOffers}/>
           </section>
         </div>
       </main>
