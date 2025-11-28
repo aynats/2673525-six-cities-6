@@ -1,4 +1,4 @@
-import { UserData } from "./user-data";
+import { UserData } from './user-data';
 
 export type ReviewType = {
   id: string;

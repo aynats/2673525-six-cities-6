@@ -13,7 +13,7 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 
 function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  
+
   const { id } = useParams();
 
   useEffect(() => {

@@ -26,11 +26,9 @@ export enum AuthorizationStatus {
 
 export enum APIRoute {
   Offers = '/offers',
-  Offer = '/offers',
   Login = '/login',
   Logout = '/logout',
   Reviews = '/comments',
-  Nearby = '/offers'
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

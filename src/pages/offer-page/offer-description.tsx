@@ -71,9 +71,9 @@ function OfferDescription({ offer } : OfferDescriptionProps) : JSX.Element {
           )}
         </div>
         <div className='offer__description'>
-            <p className='offer__text'>
-              {offer.description}
-            </p>
+          <p className='offer__text'>
+            {offer.description}
+          </p>
         </div>
       </div>
     </>

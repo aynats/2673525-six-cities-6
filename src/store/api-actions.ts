@@ -35,7 +35,7 @@ export const fetchOfferAction = createAsyncThunk<Offer, string, {
 }>(
   'data/fetchOffer',
   async (offerId, { extra: api }) => {
-    const { data } = await api.get<Offer>(`${APIRoute.Offer}/${offerId}`);
+    const { data } = await api.get<Offer>(`${APIRoute.Offers}/${offerId}`);
     return data;
   }
 );
@@ -55,7 +55,7 @@ export const fetchNearbyAction = createAsyncThunk<Offer[], string, {
 }>(
   'data/fetchNearby',
   async (offerId, { extra: api }) => {
-    const { data } = await api.get<Offer[]>(`${APIRoute.Nearby}/${offerId}/nearby`);
+    const { data } = await api.get<Offer[]>(`${APIRoute.Offers}/${offerId}/nearby`);
     return data;
   }
 );
