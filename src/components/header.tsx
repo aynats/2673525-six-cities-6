@@ -9,7 +9,8 @@ function Header(): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const favoriteCount = useAppSelector((state) => state.offers.filter(o => o.isFavorite).length);
-  
+  const user = useAppSelector((state) => state.user);
+
   const handleLogout = () => {
     dispatch(logoutAction());
   };
@@ -33,7 +34,7 @@ function Header(): JSX.Element {
                     <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      <span className="header__user-name user__name">{user?.email}</span>
                       <span className="header__favorite-count">{favoriteCount}</span>
                     </Link>
                   </li>

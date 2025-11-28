@@ -1,6 +1,6 @@
 import axios, {AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
 import {StatusCodes} from 'http-status-codes';
-import {getToken} from './token';
+import {getToken, dropToken} from './token';
 import {processErrorHandle} from './process-error-handle';
 
 type DetailMessageType = {
@@ -39,6 +39,11 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
+
+      if (error.response?.status === StatusCodes.UNAUTHORIZED) {
+        dropToken();
+      }
+
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
 

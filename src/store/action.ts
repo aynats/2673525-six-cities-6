@@ -3,6 +3,7 @@ import { Offer } from '../types/offer';
 import { ReviewType } from '../types/review';
 import { City } from '../types/city';
 import {AuthorizationStatus} from '../const';
+import { UserData } from '../types/user-data';
 
 export const changeCity = createAction<City>('data/changeCity');
 
@@ -13,6 +14,8 @@ export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersD
 export const loadReviews = createAction<ReviewType[]>('data/loadReviews');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+
+export const setUserData = createAction<UserData>('user/setUserData');
 
 export const setError = createAction<string | null>('site/setError');
 

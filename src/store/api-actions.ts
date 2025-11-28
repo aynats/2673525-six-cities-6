@@ -4,7 +4,7 @@ import {AxiosInstance} from 'axios';
 import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
-import {requireAuthorization, setError, setOffersDataLoadingStatus} from './action';
+import {requireAuthorization, setError, setOffersDataLoadingStatus, setUserData} from './action';
 import {dropToken, saveToken} from '../services/token';
 // import {store} from '.';
 
@@ -49,8 +49,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const { data } = await api.post<UserData>(APIRoute.Login, {email, password});
+
+    saveToken(data.token);
+    dispatch(setUserData(data));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   },
 );
