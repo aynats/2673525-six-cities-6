@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { FormEvent, useState } from 'react';
 import { loginAction } from '../../store/api-actions';
@@ -20,8 +20,11 @@ function LoginPage(): JSX.Element {
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    await dispatch(loginAction({login: email, password}));
-    navigate(AppRoute.Root);
+    const resultAction = await dispatch(loginAction({login: email, password}));
+
+    if (loginAction.fulfilled.match(resultAction)) {
+      navigate(AppRoute.Root);
+    }
   };
 
   return (
@@ -30,7 +33,7 @@ function LoginPage(): JSX.Element {
         <title>{'6 cities — login'}</title>
       </Helmet>
 
-      <Header/>
+      <Header isLoginPage = {true}/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

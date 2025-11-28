@@ -48,13 +48,18 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({login: email, password}, {dispatch, extra: api}) => {
-    const { data } = await api.post<UserData>(APIRoute.Login, {email, password});
-
-    saveToken(data.token);
-    dispatch(setUserData(data));
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-  },
+  async ({ login: email, password }, { dispatch, extra: api, rejectWithValue }) => {
+    try {
+      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+      saveToken(data.token);
+      dispatch(setUserData(data));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Ошибка авторизации';
+      dispatch(setError(message));
+      return rejectWithValue(message);
+    }
+  }
 );
 
 export const logoutAction = createAsyncThunk<void, undefined, {

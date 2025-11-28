@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, /*CITIES*/} from '../const';
-import { useAppDispatch } from '../hooks/use-app-dispatch';
-import { useAppSelector } from '../hooks/use-app-selector';
-import { logoutAction } from '../store/api-actions';
+import {AppRoute, AuthorizationStatus, /*CITIES*/} from '../../const';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { logoutAction } from '../../store/api-actions';
+import './header.css';
 
-function Header(): JSX.Element {
+type HeaderProps = {
+  isLoginPage?: boolean;
+};
+
+function Header({isLoginPage} : HeaderProps): JSX.Element {
 
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -26,6 +31,7 @@ function Header(): JSX.Element {
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
             </Link>
           </div>
+           {!isLoginPage && (
           <nav className="header__nav">
             <ul className="header__nav-list">
               {isAuth ? (
@@ -39,7 +45,7 @@ function Header(): JSX.Element {
                     </Link>
                   </li>
                   <li className="header__nav-item">
-                    <button className="header__nav-link" onClick={handleLogout}>
+                    <button className="header__nav-link header__signout-button" onClick={handleLogout}>
                       <span className="header__signout">Sign out</span>
                     </button>
                   </li>
@@ -58,6 +64,7 @@ function Header(): JSX.Element {
             }
             </ul>
           </nav>
+          )}
         </div>
       </div>
     </header>
