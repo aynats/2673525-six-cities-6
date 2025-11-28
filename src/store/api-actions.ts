@@ -6,6 +6,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { requireAuthorization, setError, setOffersDataLoadingStatus, setUserData } from './action';
 import { dropToken, saveToken } from '../services/token';
+import { ReviewType } from '../types/review';
 
 export const clearErrorAction = createAsyncThunk(
   'site/clearError',
@@ -35,7 +36,16 @@ export const fetchOfferAction = createAsyncThunk<Offer, string, {
   'data/fetchOffer',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<Offer>(`${APIRoute.Offer}/${offerId}`);
-    console.log('BABABA', data)
+    return data;
+  }
+);
+
+export const fetchReviewsAction = createAsyncThunk<ReviewType[], string, {
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviews',
+  async (offerId, { extra: api }) => {
+    const { data } = await api.get<ReviewType[]>(`${APIRoute.Reviews}/${offerId}`);
     return data;
   }
 );

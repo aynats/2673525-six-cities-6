@@ -30,12 +30,10 @@ function ReviewsList({ reviews, } : ReviewsListProps) : JSX.Element {
           <Review
             key={review.id}
             id={review.id}
-            offerId={review.offerId}
-            author={review.author}
-            avatar={review.avatar}
+            user={review.user}
             rating={review.rating}
             date={review.date}
-            text={review.text}
+            comment={review.comment}
           />
         ))}
       </ul>

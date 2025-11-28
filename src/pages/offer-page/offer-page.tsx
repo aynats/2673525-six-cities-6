@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import Form from '../../components/form';
 import ReviewsList from '../../components/reviews-list';
-import { ReviewType } from '../../types/review';
 import Map from '../../components/map';
 import { Offer } from '../../types/offer';
 import { useEffect, useState } from 'react';
@@ -10,15 +9,14 @@ import OfferListNearPlaces from '../../components/offer-list-near-places';
 import OfferDescription from './offer-description';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { fetchOfferAction } from '../../store/api-actions';
+import { fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
 
 type OfferPageProps = {
-  reviews: ReviewType[];
   offers: Offer[];
 }
 
-function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
+function OfferPage({offers} : OfferPageProps): JSX.Element {
   const dispatch = useAppDispatch();
   
   const { id } = useParams();
@@ -26,19 +24,15 @@ function OfferPage({reviews, offers} : OfferPageProps): JSX.Element {
   useEffect(() => {
     if (id) {
       dispatch(fetchOfferAction(id));
-      console.log('ЕПТА', offer);
+      dispatch(fetchReviewsAction(id));
     }
   }, [id, dispatch]);
-
-  const offer = useAppSelector((state) => state.offer);
-  console.log('KKKKK', offer);
-  const offerId = id;
-
-  const offerReviews = reviews.filter((review) => review.offerId === offerId); // !!
+  
   const currentOffer = useAppSelector((state) => state.offer);
+  const offerReviews = useAppSelector((state) => state.reviews);
 
   //const currentOffer = offers.find((offer) => offer.id === offerId);
-  const nearbyOffers = offers.filter((offer) => offer.id !== offerId).slice(0, 3); // !!
+  const nearbyOffers: Offer[] = []; // offers.filter((offer) => offer.id !== offerId).slice(0, 3); // !!
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
   const handleListItemHover = (hoveredOfferId: string) => {

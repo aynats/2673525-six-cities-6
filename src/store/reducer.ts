@@ -6,7 +6,7 @@ import {ReviewType} from '../types/review';
 import { City } from '../types/city';
 import { UserData } from '../types/user-data';
 import { AuthorizationStatus } from '../const';
-import { fetchOffersAction, fetchOfferAction } from './api-actions';
+import { fetchOffersAction, fetchOfferAction, fetchReviewsAction } from './api-actions';
 
 type InitialState = {
   city: City;
@@ -70,6 +70,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchOfferAction.fulfilled, (state, action) => {
       console.log('LLLL', action);
       state.offer = action.payload;
+    })
+
+    .addCase(fetchReviewsAction.fulfilled, (state, action) => {
+      state.reviews = action.payload;
     })
 
     .addCase(setError, (state, action) => {
