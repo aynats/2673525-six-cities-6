@@ -1,6 +1,6 @@
 export type ReviewType = {
-  id: number;
-  offerId: number;
+  id: string;
+  offerId: string;
   author: string;
   avatar: string;
   rating: number;

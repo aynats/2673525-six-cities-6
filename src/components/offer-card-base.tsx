@@ -10,7 +10,7 @@ type OfferCardProps = {
 };
 
 function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Element {
-  const mainPhoto = offer.images[0] || '';
+  // const mainPhoto = offer?.images?.length > 0 ? offer?.images[0] : '';
   const offerRoute = getOfferRoute(offer.id);
 
   return (
@@ -26,8 +26,8 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
       )}
 
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
-        <Link to ={offerRoute}>
-          <img className='place-card__image' src={mainPhoto} width='260' height='200' alt='Place image'/>
+        <Link to={offerRoute}>
+          <img className='place-card__image' src={offer?.previewImage} width='260' height='200' alt='Place image'/>
         </Link>
       </div>
       <div className='place-card__info'>

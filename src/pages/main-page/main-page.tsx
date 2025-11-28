@@ -8,16 +8,27 @@ import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import Header from '../../components/header/header';
+import { City } from '../../types/city';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector((state) => state.city);
   const allOffers = useAppSelector((state) => state.offers);
-
+  // console.log(allOffers);
+  // console.log('iiiii ', currentCity);
   const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
   const offersCount = cityOffers.length;
 
-  const cities = Array.from(new Set(allOffers.map((offer) => offer.city)));
+  const uniqueCities: Record<string, City> = {};
+
+  allOffers.forEach((offer) => {
+    uniqueCities[offer.city.name] = offer.city;
+  });
+
+  const cities = Object.values(uniqueCities);
+
+  //console.log(cities);
+
   const handleCityChange = (city: typeof cities[0]) => {
     dispatch(changeCity(city));
   };

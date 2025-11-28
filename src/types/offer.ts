@@ -1,7 +1,7 @@
 import { Location } from './location';
 
 export type Offer = {
-  id: number;
+  id: string;
   title: string;
   housingType: string;
   price: number;
@@ -23,6 +23,7 @@ export type Offer = {
   host: Host;
   isPremium?: boolean;
   isFavorite?: boolean;
+  previewImage?: string;
 };
 
 type Goods = string[];
