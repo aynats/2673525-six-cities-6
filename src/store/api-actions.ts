@@ -1,12 +1,11 @@
-import {/*createAction,*/ createAsyncThunk} from '@reduxjs/toolkit';
-import {Offer} from '../types/offer';
-import {AxiosInstance} from 'axios';
-import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
-import {AuthData} from '../types/auth-data';
-import {UserData} from '../types/user-data';
-import {requireAuthorization, setError, setOffersDataLoadingStatus, setUserData} from './action';
-import {dropToken, saveToken} from '../services/token';
-// import {store} from '.';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Offer } from '../types/offer';
+import { AxiosInstance } from 'axios';
+import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { AuthData } from '../types/auth-data';
+import { UserData } from '../types/user-data';
+import { requireAuthorization, setError, setOffersDataLoadingStatus, setUserData } from './action';
+import { dropToken, saveToken } from '../services/token';
 
 export const clearErrorAction = createAsyncThunk(
   'site/clearError',

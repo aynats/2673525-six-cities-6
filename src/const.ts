@@ -1,7 +1,3 @@
-// import { CITIES, DEFAULT_CITY } from './mocks/cities';
-
-// export { CITIES, DEFAULT_CITY };
-
 export const SETTINGS = {
   offersCount: 312
 };

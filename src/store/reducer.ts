@@ -1,9 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-//import { DEFAULT_CITY } from '../const';
-//import { offers } from '../mocks/offers';
 import {changeCity, loadOffers, loadReviews, setOffersDataLoadingStatus, 
   requireAuthorization, setError, setUserData } from './action';
-//import { reviews } from '../mocks/reviews';
 import {Offer} from '../types/offer';
 import {ReviewType} from '../types/review';
 import { City } from '../types/city';

@@ -1,13 +1,13 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {HelmetProvider} from 'react-helmet-async';
-import {AppRoute, AuthorizationStatus, getOfferRoute} from '../../const';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { AppRoute, AuthorizationStatus, getOfferRoute } from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route';
-import {fetchOffersAction} from '../../store/api-actions';
+import { fetchOffersAction } from '../../store/api-actions';
 import { useEffect } from 'react';
 import LoadingPage from '../../pages/loading-page/loading-page';
 import { useAppSelector } from '../../hooks/use-app-selector';
