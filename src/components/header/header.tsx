@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
@@ -68,4 +69,4 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
   );
 }
 
-export default Header;
+export default React.memo(Header);
