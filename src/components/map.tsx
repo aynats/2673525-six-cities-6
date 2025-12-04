@@ -1,10 +1,10 @@
-import {useRef, useEffect} from 'react';
-import {Icon, Marker, layerGroup} from 'leaflet';
+import { useRef, useEffect } from 'react';
+import { Icon, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../hooks/use-map';
 import { type Offer } from '../types/offer';
 import { type City } from '../types/city';
-import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../const';
 import React from 'react';
 
 
@@ -26,7 +26,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({city, offers, selectedPoint}: MapProps): JSX.Element {
+function Map({ city, offers, selectedPoint }: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -49,8 +49,8 @@ function Map({city, offers, selectedPoint}: MapProps): JSX.Element {
         marker
           .setIcon(
             selectedPoint !== undefined
-            && offer.location.latitude === selectedPoint.location.latitude
-            && offer.location.longitude === selectedPoint.location.longitude
+              && offer.location.latitude === selectedPoint.location.latitude
+              && offer.location.longitude === selectedPoint.location.longitude
               ? currentCustomIcon
               : defaultCustomIcon
           )
@@ -63,7 +63,14 @@ function Map({city, offers, selectedPoint}: MapProps): JSX.Element {
     }
   }, [map, offers, selectedPoint]);
 
-  return <div style={{height: '100%'}} ref={mapRef}></div>;
+  return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }
 
-export default React.memo(Map);
+export default React.memo(Map, (prev, next) => {
+  return (
+    prev.city === next.city &&
+    prev.selectedPoint?.id === next.selectedPoint?.id &&
+    prev.offers.length === next.offers.length &&
+    prev.offers.every((o, i) => o.id === next.offers[i].id)
+  );
+});

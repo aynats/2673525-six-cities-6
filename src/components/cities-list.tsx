@@ -1,3 +1,4 @@
+import React from 'react';
 import { type City } from '../types/city';
 import cn from 'classnames';
 
@@ -35,4 +36,4 @@ function CitiesList({ cities, currentCity, onCityChange }: CitiesListProps): JSX
   );
 }
 
-export default CitiesList;
+export default React.memo(CitiesList);

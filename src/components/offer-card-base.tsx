@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getOfferRoute } from '../const';
 import { MouseEvent } from 'react';
 import cn from 'classnames';
+import React from 'react';
 
 type OfferCardProps = {
   offer: Offer;
@@ -65,4 +66,4 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
   );
 }
 
-export default OfferCard;
+export default React.memo(OfferCard);

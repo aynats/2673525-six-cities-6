@@ -1,10 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { type Offer } from '../../types/offer';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
 import CitiesList from '../../components/cities-list';
-//import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import Header from '../../components/header/header';
@@ -18,27 +17,31 @@ function MainPage(): JSX.Element {
   const currentCity = useAppSelector((state) => state[NameSpace.City].city);
   const allOffers = useAppSelector((state) => state[NameSpace.Offers].offers);
 
-  const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
+  const cityOffers = useMemo(
+    () => allOffers.filter((offer) => offer.city.name === currentCity.name),
+    [allOffers, currentCity.name]
+  );
   const offersCount = cityOffers.length;
 
-  const uniqueCities: Record<string, City> = {};
+  const cities = useMemo(() => {
+    const unique: Record<string, City> = {};
+    allOffers.forEach((offer) => {
+      unique[offer.city.name] = offer.city;
+    });
+    return Object.values(unique);
+  }, [allOffers]);
 
-  allOffers.forEach((offer) => {
-    uniqueCities[offer.city.name] = offer.city;
-  });
 
-  const cities = Object.values(uniqueCities);
-
-  const handleCityChange = (city: typeof cities[0]) => {
+  const handleCityChange = useCallback((city: City) => {
     dispatch(setCity(city));
-  };
+  }, [dispatch]);
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
-  const handleListItemHover = (offerId: string) => {
+  const handleListItemHover = useCallback((offerId: string) => {
     const currentOffer = cityOffers.find((offer) => offer.id.toString() === offerId);
     setSelectedOffer(currentOffer);
-  };
+  }, [cityOffers]);
 
   return (
     <div className="page page--gray page--main">
@@ -64,7 +67,7 @@ function MainPage(): JSX.Element {
                 <span className="places__sorting-caption">Sort by</span>
                 {' '}
                 <span className="places__sorting-type" tabIndex={0}>
-                                    Popular
+                  Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
