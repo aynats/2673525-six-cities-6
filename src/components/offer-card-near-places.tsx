@@ -20,4 +20,7 @@ function OfferCardNearPlaces({ offer, onMouseEnter }: OfferCardNearPlacesProps) 
   );
 }
 
-export default React.memo(OfferCardNearPlaces);
+const MemoizedOfferCardNearPlaces = React.memo(OfferCardNearPlaces);
+MemoizedOfferCardNearPlaces.displayName = 'OfferCardNearPlaces';
+
+export default MemoizedOfferCardNearPlaces;

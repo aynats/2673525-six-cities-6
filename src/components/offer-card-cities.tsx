@@ -19,4 +19,7 @@ function OfferCardCities({ offer, onMouseEnter }: OfferCardCitiesProps) {
   );
 }
 
-export default React.memo(OfferCardCities);
+const MemoizedOfferCardCities = React.memo(OfferCardCities);
+MemoizedOfferCardCities.displayName = 'OfferCardCities';
+
+export default MemoizedOfferCardCities;

@@ -37,4 +37,7 @@ function CitiesList({ cities, currentCity, onCityChange }: CitiesListProps): JSX
   );
 }
 
-export default React.memo(CitiesList);
+const MemoizedCitiesList = React.memo(CitiesList);
+MemoizedCitiesList.displayName = 'CitiesList';
+
+export default MemoizedCitiesList;

@@ -18,4 +18,7 @@ function OfferListNearPlaces({ offers, onListItemHover }: OfferListNearPlacesPro
   );
 }
 
-export default React.memo(OfferListNearPlaces);
+const MemoizedOfferListNearPlaces = React.memo(OfferListNearPlaces);
+MemoizedOfferListNearPlaces.displayName = 'OfferListNearPlaces';
+
+export default MemoizedOfferListNearPlaces;

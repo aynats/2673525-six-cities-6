@@ -67,4 +67,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
   );
 }
 
-export default React.memo(OfferCard);
+const MemoizedOfferCard = React.memo(OfferCard);
+MemoizedOfferCard.displayName = 'OfferCard';
+
+export default MemoizedOfferCard;

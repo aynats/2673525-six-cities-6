@@ -68,5 +68,7 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
     </header>
   );
 }
+const MemoizedHeader = React.memo(Header);
+MemoizedHeader.displayName = 'Header';
 
-export default React.memo(Header);
+export default MemoizedHeader;

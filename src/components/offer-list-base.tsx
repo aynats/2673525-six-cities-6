@@ -68,4 +68,7 @@ function OfferList({ offers, onListItemHover, className, tabsContent, }: OfferLi
   );
 }
 
-export default React.memo(OfferList);
+const MemoizedOfferList = React.memo(OfferList);
+MemoizedOfferList.displayName = 'OfferList';
+
+export default MemoizedOfferList;

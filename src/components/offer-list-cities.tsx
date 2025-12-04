@@ -18,4 +18,7 @@ function OfferListCities({ offers, onListItemHover }: OfferListCitiesProps): JSX
   );
 }
 
-export default React.memo(OfferListCities);
+const MemoizedOfferListCities = React.memo(OfferListCities);
+MemoizedOfferListCities.displayName = 'OfferListCities';
+
+export default MemoizedOfferListCities;
