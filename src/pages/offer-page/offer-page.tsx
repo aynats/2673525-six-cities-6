@@ -26,8 +26,15 @@ function OfferPage(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const currentOffer = useAppSelector((state) => state[NameSpace.Offer].offer);
-  const offerReviews = useAppSelector((state) => state[NameSpace.Offer].reviews);
+  const currentOffer = useAppSelector(
+  (state) => state[NameSpace.Offer].offer,
+  (a, b) => a?.id === b?.id
+);
+
+const offerReviews = useAppSelector(
+  (state) => state[NameSpace.Offer].reviews,
+  (a, b) => a.length === b.length
+);
   const nearbyOffers = useAppSelector((state) => state[NameSpace.Offer].nearby).slice(0, 3);
 
   const city = currentOffer
@@ -42,9 +49,14 @@ function OfferPage(): JSX.Element {
     };
 
   const mapOffers = useMemo(
-    () => [...nearbyOffers, currentOffer],
+    () => currentOffer ? [...nearbyOffers, currentOffer] : nearbyOffers,
     [nearbyOffers, currentOffer]
   );
+
+  const memoizedNearbyOffers = useMemo(
+  () => nearbyOffers,
+  [nearbyOffers]
+);
 
   if (!currentOffer) {
     return <div>Offer not found</div>;
@@ -92,13 +104,13 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map' style={{ background: 'none' }}>
-            <Map city={city} offers={[...nearbyOffers, currentOffer]} selectedPoint={currentOffer} />
+            <Map city={city} offers={mapOffers} selectedPoint={currentOffer} />
           </section>
         </section>
         <div className='container'>
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
-            <OfferListNearPlaces offers={nearbyOffers} />
+            <OfferListNearPlaces offers={memoizedNearbyOffers} />
           </section>
         </div>
       </main>

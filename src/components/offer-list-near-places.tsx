@@ -1,3 +1,4 @@
+import React from 'react';
 import { type Offer } from '../types/offer';
 import OfferList from './offer-list-base';
 
@@ -17,4 +18,4 @@ function OfferListNearPlaces({ offers, onListItemHover } : OfferListNearPlacesPr
   );
 }
 
-export default OfferListNearPlaces;
+export default React.memo(OfferListNearPlaces);
