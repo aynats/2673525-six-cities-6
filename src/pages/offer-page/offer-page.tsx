@@ -29,7 +29,13 @@ function OfferPage(): JSX.Element {
   }, [id, dispatch]);
 
   const currentOffer = useAppSelector(getCurrentOffer);
+  //   const navigate = useNavigate();
 
+  //   useEffect(() => {
+  //   if (!currentOffer) {
+  //     navigate(AppRoute.NotFound);
+  //   }
+  // }, [currentOffer, navigate]);
   const offerReviews = useAppSelector(getOfferReviews);
   const nearbyOffers = useAppSelector(selectTopNearbyOffers);
 
