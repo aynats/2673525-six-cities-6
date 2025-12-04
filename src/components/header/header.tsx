@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { logoutAction } from '../../store/api-actions';
+import { fetchOffersAction, logoutAction } from '../../store/api-actions';
 import './header.css';
 
 type HeaderProps = {
@@ -17,8 +17,10 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
   const favoriteCount = useAppSelector((state) => state[NameSpace.Offers].offers.filter((o) => o.isFavorite).length);
   const user = useAppSelector((state) => state[NameSpace.User].user);
-  const handleLogout = () => {
-    dispatch(logoutAction());
+
+  const handleLogout = async () => {
+    await dispatch(logoutAction());
+    dispatch(fetchOffersAction());
   };
 
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;

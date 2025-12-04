@@ -1,8 +1,8 @@
-interface EmptyStateProps {
+interface EmptyMainStateProps {
   city: string;
 }
 
-function EmptyState({ city }: EmptyStateProps): JSX.Element {
+function EmptyMainState({ city }: EmptyMainStateProps): JSX.Element {
   return (
     <div className="cities">
       <div className="cities__places-container cities__places-container--empty container">
@@ -18,4 +18,4 @@ function EmptyState({ city }: EmptyStateProps): JSX.Element {
   )
 };
 
-export default EmptyState;
+export default EmptyMainState;

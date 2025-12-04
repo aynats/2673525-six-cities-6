@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { MouseEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
-import { getOfferRoute } from '../const';
+import { AppRoute, AuthorizationStatus, getOfferRoute } from '../const';
 import { type Offer } from '../types/offer';
+import { addFavorite } from '../store/api-actions';
+import { useAppDispatch } from '../hooks/use-app-dispatch';
+import { getAuthorizationStatus } from '../store/user/user.selector';
+import { useAppSelector } from '../hooks/use-app-selector';
 
 type OfferCardProps = {
   offer: Offer;
@@ -14,6 +18,17 @@ type OfferCardProps = {
 
 function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Element {
   const offerRoute = getOfferRoute(offer.id);
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const navigate = useNavigate();
+
+  const handleFavoriteClick = useCallback(() => {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    } else {
+      dispatch(addFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
+    }
+  }, [dispatch, offer.isFavorite, offer.id]);
 
   return (
     <article
@@ -45,6 +60,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
               { 'place-card__bookmark-button--active': offer.isFavorite },
               'button')}
             type='button'
+            onClick={handleFavoriteClick}
           >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark'></use>
@@ -71,3 +87,4 @@ const MemoizedOfferCard = React.memo(OfferCard);
 MemoizedOfferCard.displayName = 'OfferCard';
 
 export default MemoizedOfferCard;
+

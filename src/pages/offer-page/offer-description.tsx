@@ -1,11 +1,31 @@
 import cn from 'classnames';
+import { useCallback } from 'react';
+
 import { type Offer } from '../../types/offer';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { addFavorite } from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { getAuthorizationStatus } from '../../store/user/user.selector';
 
 type OfferDescriptionProps = {
   offer: Offer;
 };
 
 function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const authStatus = useAppSelector(getAuthorizationStatus);
+
+  const handleFavoriteClick = useCallback(() => {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    } else {
+      dispatch(addFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
+    }
+  }, [dispatch, offer.isFavorite, offer.id]);
+
   return (
     <>
       {offer.isPremium && (
@@ -23,6 +43,7 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
             { 'offer__bookmark-button--active': offer.isFavorite },
             'button')}
           type='button'
+          onClick={handleFavoriteClick}
         >
           <svg className='offer__bookmark-icon' width='31' height='33'>
             <use xlinkHref='#icon-bookmark'></use>

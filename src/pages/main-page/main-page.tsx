@@ -6,7 +6,7 @@ import Header from '../../components/header/header';
 import CitiesList from '../../components/cities-list';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
-import EmptyState from '../../components/empty-state';
+import EmptyMainState from '../../components/empty-main-state';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
@@ -27,7 +27,6 @@ function MainPage(): JSX.Element {
   const offersCount = cityOffers.length;
 
   const cities = useAppSelector(selectUniqueCities);
-
 
   const handleCityChange = useCallback((city: City) => {
     dispatch(setCity(city));
@@ -61,7 +60,7 @@ function MainPage(): JSX.Element {
         />
         
         {offersCount === 0 ? (
-          <EmptyState city={currentCity.name} />
+          <EmptyMainState city={currentCity.name} />
         ) : (
           <div className="cities">
             <div className="cities__places-container container">
