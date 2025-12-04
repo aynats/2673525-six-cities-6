@@ -14,7 +14,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setError(state, action: PayloadAction<string | null>) {
-      console.log('ee', action);
       state.error = action.payload;
     }
   },
