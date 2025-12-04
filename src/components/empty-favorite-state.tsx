@@ -7,7 +7,7 @@ function EmptyFavoritesState(): JSX.Element {
         <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
       </div>
     </section>
-  )
-};
+  );
+}
 
 export default EmptyFavoritesState;

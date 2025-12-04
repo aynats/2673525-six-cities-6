@@ -15,7 +15,7 @@ function EmptyMainState({ city }: EmptyMainStateProps): JSX.Element {
         <div className="cities__right-section"></div>
       </div>
     </div>
-  )
-};
+  );
+}
 
 export default EmptyMainState;

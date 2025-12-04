@@ -24,7 +24,7 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
     } else {
       dispatch(addFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
     }
-  }, [dispatch, offer.isFavorite, offer.id]);
+  }, [dispatch, offer.isFavorite, offer.id, authStatus, navigate]);
 
   return (
     <>

@@ -58,7 +58,7 @@ function MainPage(): JSX.Element {
           currentCity={currentCity}
           onCityChange={handleCityChange}
         />
-        
+
         {offersCount === 0 ? (
           <EmptyMainState city={currentCity.name} />
         ) : (

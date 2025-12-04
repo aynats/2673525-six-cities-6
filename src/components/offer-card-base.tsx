@@ -28,7 +28,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
     } else {
       dispatch(addFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
     }
-  }, [dispatch, offer.isFavorite, offer.id]);
+  }, [dispatch, offer.isFavorite, offer.id, authStatus, navigate]);
 
   return (
     <article
