@@ -7,7 +7,7 @@ type OfferListNearPlacesProps = {
   onListItemHover?: (offerId: string) => void;
 };
 
-function OfferListNearPlaces({ offers, onListItemHover } : OfferListNearPlacesProps) : JSX.Element {
+function OfferListNearPlaces({ offers, onListItemHover }: OfferListNearPlacesProps): JSX.Element {
   return (
     <OfferList
       offers={offers}

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { fetchOfferAction, fetchReviewsAction, fetchNearbyAction } from '../api-actions';
 import { OfferState } from '../../types/state';
 

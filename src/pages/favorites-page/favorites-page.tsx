@@ -1,16 +1,14 @@
-import { Helmet } from 'react-helmet-async';
-import { type Offer } from '../../types/offer';
-import OfferList from '../../components/offer-list-cities';
-import { AppRoute } from '../../const';
-import { Link } from 'react-router-dom';
-import Header from '../../components/header/header';
 import { useMemo } from 'react';
-import { useAppSelector } from '../../hooks/use-app-selector';
-import { selectFavoriteOffers } from '../../store/offers/offers.selector';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
-// type FavoritesPageProps = {
-//   offers: Offer[];
-// }
+import { AppRoute } from '../../const';
+import Header from '../../components/header/header';
+import OfferList from '../../components/offer-list-cities';
+
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { type Offer } from '../../types/offer';
+import { selectFavoriteOffers } from '../../store/offers/offers.selector';
 
 function FavoritesPage(): JSX.Element {
   const favoriteOffers = useAppSelector(selectFavoriteOffers);

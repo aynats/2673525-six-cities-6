@@ -1,12 +1,12 @@
+import React from 'react';
 import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import useMap from '../hooks/use-map';
-import { type Offer } from '../types/offer';
-import { type City } from '../types/city';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../const';
-import React from 'react';
 
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../const';
+import { type City } from '../types/city';
+import { type Offer } from '../types/offer';
+import useMap from '../hooks/use-map';
 
 type MapProps = {
   city: City;
@@ -68,7 +68,7 @@ function Map({ city, offers, selectedPoint }: MapProps): JSX.Element {
 
 export default React.memo(Map, (prev, next) => (
   prev.city === next.city &&
-    prev.selectedPoint?.id === next.selectedPoint?.id &&
-    prev.offers.length === next.offers.length &&
-    prev.offers.every((o, i) => o.id === next.offers[i].id)
+  prev.selectedPoint?.id === next.selectedPoint?.id &&
+  prev.offers.length === next.offers.length &&
+  prev.offers.every((o, i) => o.id === next.offers[i].id)
 ));

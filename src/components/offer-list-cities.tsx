@@ -7,7 +7,7 @@ type OfferListCitiesProps = {
   onListItemHover?: (offerId: string) => void;
 };
 
-function OfferListCities({ offers, onListItemHover } : OfferListCitiesProps) : JSX.Element {
+function OfferListCities({ offers, onListItemHover }: OfferListCitiesProps): JSX.Element {
   return (
     <OfferList
       offers={offers}

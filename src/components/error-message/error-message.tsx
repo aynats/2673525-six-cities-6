@@ -1,5 +1,5 @@
 import { NameSpace } from '../../const';
-import {useAppSelector} from '../../hooks/use-app-selector';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import './error-message.css';
 
 function ErrorMessage(): JSX.Element | null {

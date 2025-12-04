@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
@@ -10,7 +11,7 @@ type HeaderProps = {
   isLoginPage?: boolean;
 };
 
-function Header({isLoginPage} : HeaderProps): JSX.Element {
+function Header({ isLoginPage }: HeaderProps): JSX.Element {
 
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
@@ -28,7 +29,7 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
         <div className="header__wrapper">
           <div className="header__left">
             <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
           {!isLoginPage && (

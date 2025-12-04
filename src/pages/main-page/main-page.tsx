@@ -1,16 +1,18 @@
-import { Helmet } from 'react-helmet-async';
-import { type Offer } from '../../types/offer';
 import { useCallback, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+
+import Header from '../../components/header/header';
+import CitiesList from '../../components/cities-list';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
-import CitiesList from '../../components/cities-list';
-import { useAppSelector } from '../../hooks/use-app-selector';
+
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import Header from '../../components/header/header';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import { type City } from '../../types/city';
+import { type Offer } from '../../types/offer';
 import { setCity } from '../../store/city/city.slice';
-import { selectOffersByCity, selectUniqueCities } from '../../store/offers/offers.selector';
 import { getCity } from '../../store/city/city.selector';
+import { selectOffersByCity, selectUniqueCities } from '../../store/offers/offers.selector';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();

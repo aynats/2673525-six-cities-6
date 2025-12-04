@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { AuthorizationStatus } from '../../const';
-import { loginAction, logoutAction, checkAuthAction } from '../api-actions';
 import { UserState } from '../../types/state';
+import { checkAuthAction, loginAction, logoutAction } from '../api-actions';
+
 
 const initialState: UserState = {
   user: null,

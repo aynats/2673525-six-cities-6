@@ -1,14 +1,16 @@
-import OfferCard from './offer-card-base.tsx';
-import { type Offer } from '../types/offer';
-import { MouseEvent } from 'react';
 import React from 'react';
+import { MouseEvent } from 'react';
+
+import { type Offer } from '../types/offer';
+import OfferCard from './offer-card-base.tsx';
+
 
 type OfferCardNearPlacesProps = {
   offer: Offer;
   onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
 };
 
-function OfferCardNearPlaces({offer, onMouseEnter} : OfferCardNearPlacesProps) {
+function OfferCardNearPlaces({ offer, onMouseEnter }: OfferCardNearPlacesProps) {
   return (
     <OfferCard
       className={'near-places'}

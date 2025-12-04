@@ -1,16 +1,18 @@
+import { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import Form from '../../components/form';
-import ReviewsList from '../../components/reviews-list';
-import Map from '../../components/map';
-import { useEffect, useMemo } from 'react';
-import OfferListNearPlaces from '../../components/offer-list-near-places';
-import OfferDescription from './offer-description';
+
 import Header from '../../components/header/header';
+import Form from '../../components/form';
+import Map from '../../components/map';
+import OfferListNearPlaces from '../../components/offer-list-near-places';
+import ReviewsList from '../../components/reviews-list';
+import OfferDescription from './offer-description';
+
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { getCurrentOffer, getOfferReviews, selectTopNearbyOffers, selectMapOffers } from '../../store/offer/offer.selector';
+import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
+import { getCurrentOffer, getOfferReviews, selectMapOffers, selectTopNearbyOffers } from '../../store/offer/offer.selector';
 
 function OfferPage(): JSX.Element {
 

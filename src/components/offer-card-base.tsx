@@ -1,9 +1,10 @@
-import { type Offer } from '../types/offer';
-import { Link } from 'react-router-dom';
-import { getOfferRoute } from '../const';
-import { MouseEvent } from 'react';
-import cn from 'classnames';
 import React from 'react';
+import { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
+import cn from 'classnames';
+
+import { getOfferRoute } from '../const';
+import { type Offer } from '../types/offer';
 
 type OfferCardProps = {
   offer: Offer;

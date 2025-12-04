@@ -1,24 +1,11 @@
 import Review from './review';
 import { type ReviewType } from '../types/review';
-// import { MouseEvent } from 'react';
 
 type ReviewsListProps = {
   reviews: ReviewType[];
-
-  //onListItemHover?: (offerId: string) => void;
 };
 
-function ReviewsList({ reviews, } : ReviewsListProps) : JSX.Element {
-//   const handleListItemHover = (event: MouseEvent<HTMLElement>) => {
-//     if (!onListItemHover) {
-//       return;
-//     }
-//     event.preventDefault();
-//     const offerId = event.currentTarget.id;
-//     if (offerId) {
-//       onListItemHover(offerId);
-//     }
-//   };
+function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
   const reviewsAmount = reviews.length;
   return (
     <>

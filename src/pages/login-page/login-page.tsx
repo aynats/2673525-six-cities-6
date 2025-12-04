@@ -1,12 +1,13 @@
+import React from 'react';
+import { FormEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { FormEvent, useState } from 'react';
-import { loginAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import React from 'react';
+import { loginAction } from '../../store/api-actions';
 
 const LoginLocation = React.memo(() => (
   <section className="locations locations--login locations--current">
