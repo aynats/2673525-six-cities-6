@@ -42,7 +42,7 @@ function MainPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
-        <title>{'6 cities'}</title>
+        <title>{`6 cities — ${currentCity.name}`}</title>
       </Helmet>
 
       <Header />
