@@ -1,8 +1,8 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { NameSpace } from "../../const";
-import { State } from "../../types/state";
-import { getCity } from "../city/city.selector";
-import { City } from "../../types/city";
+import { createSelector } from '@reduxjs/toolkit';
+import { NameSpace } from '../../const';
+import { State } from '../../types/state';
+import { getCity } from '../city/city.selector';
+import { City } from '../../types/city';
 
 export const getOffers = (state: State) => state[NameSpace.Offers].offers;
 export const getIsOffersDataLoading = (state: State) => state[NameSpace.Offers].isOffersDataLoading;

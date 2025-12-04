@@ -1,8 +1,8 @@
-import { AuthorizationStatus, NameSpace } from "../const";
-import { City } from "./city";
-import { Offer } from "./offer";
-import { ReviewType } from "./review";
-import { UserData } from "./user-data";
+import { AuthorizationStatus, NameSpace } from '../const';
+import { City } from './city';
+import { Offer } from './offer';
+import { ReviewType } from './review';
+import { UserData } from './user-data';
 
 export type State = {
   [NameSpace.User]: UserState;

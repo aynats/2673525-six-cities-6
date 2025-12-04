@@ -8,17 +8,17 @@ import { loginAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import React from 'react';
 
-const LoginLocation = React.memo(function LoginLocation() {
-  return (
-    <section className="locations locations--login locations--current">
-      <div className="locations__item">
-        <Link className="locations__item-link" to={AppRoute.Root}>
-          <span>Paris</span>
-        </Link>
-      </div>
-    </section>
-  );
-});
+const LoginLocation = React.memo(() => (
+  <section className="locations locations--login locations--current">
+    <div className="locations__item">
+      <Link className="locations__item-link" to={AppRoute.Root}>
+        <span>Paris</span>
+      </Link>
+    </div>
+  </section>
+));
+
+LoginLocation.displayName = 'LoginLocation';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();

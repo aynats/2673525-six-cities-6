@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthorizationStatus } from "../../const";
-import { loginAction, logoutAction, checkAuthAction } from "../api-actions";
-import { UserState } from "../../types/state";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AuthorizationStatus } from '../../const';
+import { loginAction, logoutAction, checkAuthAction } from '../api-actions';
+import { UserState } from '../../types/state';
 
 const initialState: UserState = {
   user: null,
@@ -34,12 +34,10 @@ export const userSlice = createSlice({
         state.user = action.payload;
         state.error = null;
       })
-      .addCase(loginAction.rejected, (state, action) => {
-        //state.error = action.payload ?? 'Неизвестная ошибка';
+      .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
-      .addCase(checkAuthAction.rejected, (state, action) => {
-        //state.error = action.payload ?? 'Неизвестная ошибка';
+      .addCase(checkAuthAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       });
   },

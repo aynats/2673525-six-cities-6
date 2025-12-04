@@ -10,7 +10,7 @@ type DetailMessageType = {
     {
       messages: string[];
     }
-  ]
+  ];
 }
 
 const StatusCodeMapping: Record<number, boolean> = {

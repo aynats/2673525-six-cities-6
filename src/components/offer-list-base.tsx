@@ -36,7 +36,9 @@ const getComponentByType = (className: string, offer: Offer, onMouseEnter: (even
 
 function OfferList({ offers, onListItemHover, className, tabsContent, }: OfferListProps): JSX.Element {
   const handleListItemHover = useCallback((event: MouseEvent<HTMLElement>) => {
-    if (!onListItemHover) return;
+    if (!onListItemHover) {
+      return;
+    }
 
     event.preventDefault();
     const offerId = event.currentTarget.id;

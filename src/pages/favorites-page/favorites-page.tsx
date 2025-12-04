@@ -22,15 +22,13 @@ function FavoritesPage(): JSX.Element {
   // const hamburgOffers = favoriteOffers.filter((offer) => offer.city.name === 'Hamburg');
   // const dusseldorfOffers = favoriteOffers.filter((offer) => offer.city.name === 'Dusseldorf');
 
-  const offersByCity = useMemo(() => {
-    return favoriteOffers.reduce<Record<string, Offer[]>>((acc, offer) => {
-      if (!acc[offer.city.name]) {
-        acc[offer.city.name] = [];
-      }
-      acc[offer.city.name].push(offer);
-      return acc;
-    }, {});
-  }, [favoriteOffers]);
+  const offersByCity = useMemo(() => favoriteOffers.reduce<Record<string, Offer[]>>((acc, offer) => {
+    if (!acc[offer.city.name]) {
+      acc[offer.city.name] = [];
+    }
+    acc[offer.city.name].push(offer);
+    return acc;
+  }, {}), [favoriteOffers]);
 
   return (
     <div className="page">

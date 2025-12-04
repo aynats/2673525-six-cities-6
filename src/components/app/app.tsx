@@ -20,8 +20,8 @@ function App(): JSX.Element {
   }, [dispatch]);
 
   //const offers = useAppSelector((state) =>  state[NameSpace.Offers].offers);
-  const isOffersDataLoading = useAppSelector((state) =>  state[NameSpace.Offers].isOffersDataLoading);
-  const authorizationStatus = useAppSelector((state) =>  state[NameSpace.User].authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state[NameSpace.Offers].isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (

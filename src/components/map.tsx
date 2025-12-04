@@ -66,11 +66,9 @@ function Map({ city, offers, selectedPoint }: MapProps): JSX.Element {
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }
 
-export default React.memo(Map, (prev, next) => {
-  return (
-    prev.city === next.city &&
+export default React.memo(Map, (prev, next) => (
+  prev.city === next.city &&
     prev.selectedPoint?.id === next.selectedPoint?.id &&
     prev.offers.length === next.offers.length &&
     prev.offers.every((o, i) => o.id === next.offers[i].id)
-  );
-});
+));

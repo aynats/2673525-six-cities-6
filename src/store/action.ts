@@ -1,9 +1,9 @@
-import {createAction} from '@reduxjs/toolkit';
-import { type Offer } from '../types/offer';
-import { type ReviewType } from '../types/review';
-import { type City } from '../types/city';
-import { AuthorizationStatus } from '../const';
-import { type UserData } from '../types/user-data';
+// import {createAction} from '@reduxjs/toolkit';
+// import { type Offer } from '../types/offer';
+// import { type ReviewType } from '../types/review';
+// import { type City } from '../types/city';
+// import { AuthorizationStatus } from '../const';
+// import { type UserData } from '../types/user-data';
 
 // export const changeCity = createAction<City>('data/changeCity');
 
