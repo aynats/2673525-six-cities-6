@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchOfferAction, fetchReviewsAction, fetchNearbyAction, addFavorite } from '../api-actions';
+import { 
+  fetchOfferAction, 
+  fetchReviewsAction, 
+  fetchNearbyAction, 
+  addFavorite 
+} from '../api-actions';
 import { OfferState } from '../../types/state';
 
 

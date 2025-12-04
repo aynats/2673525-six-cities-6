@@ -6,13 +6,13 @@ import cn from 'classnames';
 import { AppRoute } from '../../const';
 import Header from '../../components/header/header';
 import OfferList from '../../components/offer-list-cities';
+import EmptyFavoritesState from '../../components/empty-favorite-state';
 
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { type Offer } from '../../types/offer';
 import { getFavoritesOffers } from '../../store/offers/offers.selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { fetchFavoriteOffers } from '../../store/api-actions';
-import EmptyFavoritesState from '../../components/empty-favorite-state';
 
 function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
