@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import Header from '../../components/header/header';
 
@@ -10,7 +10,7 @@ function NotFoundPage(): JSX.Element {
         <title>{'6 cities — 404'}</title>
       </Helmet>
 
-      <Header/>
+      <Header />
 
       <main className="page__main page__main--not-found">
         <div className="page__not-found-container container">

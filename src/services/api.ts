@@ -1,11 +1,17 @@
-import axios, {AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
-import {StatusCodes} from 'http-status-codes';
-import {getToken, dropToken} from './token';
-import {processErrorHandle} from './process-error-handle';
+import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import { StatusCodes } from 'http-status-codes';
+
+import { dropToken, getToken } from './token';
+import { processErrorHandle } from './process-error-handle';
 
 type DetailMessageType = {
   type: string;
   message: string;
+  details: [
+    {
+      messages: string[];
+    }
+  ];
 }
 
 const StatusCodeMapping: Record<number, boolean> = {
@@ -45,9 +51,14 @@ export const createAPI = (): AxiosInstance => {
       }
 
       if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = (error.response.data);
+        const data = error.response.data;
 
-        processErrorHandle(detailMessage.message);
+        const detailMessage =
+          data?.details?.length > 0
+            ? data.details[0].messages?.[0]
+            : data?.message ?? 'Unknown error';
+
+        processErrorHandle(detailMessage);
       }
 
       throw error;

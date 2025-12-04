@@ -1,13 +1,15 @@
-import OfferCard from './offer-card-base.tsx';
-import { type Offer } from '../types/offer.ts';
+import React from 'react';
 import { MouseEvent } from 'react';
+
+import { type Offer } from '../types/offer.ts';
+import OfferCard from './offer-card-base.tsx';
 
 type OfferCardCitiesProps = {
   offer: Offer;
   onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
 };
 
-export default function OfferCardCities({offer, onMouseEnter} : OfferCardCitiesProps) {
+function OfferCardCities({ offer, onMouseEnter }: OfferCardCitiesProps) {
   return (
     <OfferCard
       className={'cities'}
@@ -16,3 +18,8 @@ export default function OfferCardCities({offer, onMouseEnter} : OfferCardCitiesP
     />
   );
 }
+
+const MemoizedOfferCardCities = React.memo(OfferCardCities);
+MemoizedOfferCardCities.displayName = 'OfferCardCities';
+
+export default MemoizedOfferCardCities;

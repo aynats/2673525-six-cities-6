@@ -1,9 +1,11 @@
-import OfferCard from './offer-card-base';
+import React from 'react';
+import { MouseEvent, useCallback } from 'react';
+import cn from 'classnames';
+
 import { type Offer } from '../types/offer';
-import { MouseEvent } from 'react';
+import OfferCard from './offer-card-base';
 import OfferCardCities from './offer-card-cities';
 import OfferCardNearPlaces from './offer-card-near-places';
-import cn from 'classnames';
 
 type OfferListProps = {
   offers: Offer[];
@@ -34,16 +36,17 @@ const getComponentByType = (className: string, offer: Offer, onMouseEnter: (even
 };
 
 function OfferList({ offers, onListItemHover, className, tabsContent, }: OfferListProps): JSX.Element {
-  const handleListItemHover = (event: MouseEvent<HTMLElement>) => {
+  const handleListItemHover = useCallback((event: MouseEvent<HTMLElement>) => {
     if (!onListItemHover) {
       return;
     }
+
     event.preventDefault();
     const offerId = event.currentTarget.id;
     if (offerId) {
       onListItemHover(offerId);
     }
-  };
+  }, [onListItemHover]);
 
   return (
     <div
@@ -65,4 +68,7 @@ function OfferList({ offers, onListItemHover, className, tabsContent, }: OfferLi
   );
 }
 
-export default OfferList;
+const MemoizedOfferList = React.memo(OfferList);
+MemoizedOfferList.displayName = 'OfferList';
+
+export default MemoizedOfferList;

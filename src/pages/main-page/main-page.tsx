@@ -1,42 +1,41 @@
+import { useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { type Offer } from '../../types/offer';
-import { useState } from 'react';
+
+import Header from '../../components/header/header';
+import CitiesList from '../../components/cities-list';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
-import CitiesList from '../../components/cities-list';
-import { changeCity } from '../../store/action';
-import { useAppSelector } from '../../hooks/use-app-selector';
+
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import Header from '../../components/header/header';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import { type City } from '../../types/city';
+import { type Offer } from '../../types/offer';
+import { setCity } from '../../store/city/city.slice';
+import { getCity } from '../../store/city/city.selector';
+import { selectOffersByCity, selectUniqueCities } from '../../store/offers/offers.selector';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const currentCity = useAppSelector((state) => state.city);
-  const allOffers = useAppSelector((state) => state.offers);
+  const currentCity = useAppSelector(getCity);
+  //const allOffers = useAppSelector(getOffers);
 
-  const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
+  const cityOffers = useAppSelector(selectOffersByCity);
   const offersCount = cityOffers.length;
 
-  const uniqueCities: Record<string, City> = {};
+  const cities = useAppSelector(selectUniqueCities);
 
-  allOffers.forEach((offer) => {
-    uniqueCities[offer.city.name] = offer.city;
-  });
 
-  const cities = Object.values(uniqueCities);
-
-  const handleCityChange = (city: typeof cities[0]) => {
-    dispatch(changeCity(city));
-  };
+  const handleCityChange = useCallback((city: City) => {
+    dispatch(setCity(city));
+  }, [dispatch]);
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
-  const handleListItemHover = (offerId: string) => {
+  const handleListItemHover = useCallback((offerId: string) => {
     const currentOffer = cityOffers.find((offer) => offer.id.toString() === offerId);
     setSelectedOffer(currentOffer);
-  };
+  }, [cityOffers]);
 
   return (
     <div className="page page--gray page--main">
@@ -62,7 +61,7 @@ function MainPage(): JSX.Element {
                 <span className="places__sorting-caption">Sort by</span>
                 {' '}
                 <span className="places__sorting-type" tabIndex={0}>
-                                    Popular
+                  Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>

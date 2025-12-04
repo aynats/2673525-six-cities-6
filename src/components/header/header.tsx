@@ -1,5 +1,7 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { logoutAction } from '../../store/api-actions';
@@ -9,13 +11,12 @@ type HeaderProps = {
   isLoginPage?: boolean;
 };
 
-function Header({isLoginPage} : HeaderProps): JSX.Element {
+function Header({ isLoginPage }: HeaderProps): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const favoriteCount = useAppSelector((state) => state.offers.filter((o) => o.isFavorite).length);
-  const user = useAppSelector((state) => state.user);
-
+  const authorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
+  const favoriteCount = useAppSelector((state) => state[NameSpace.Offers].offers.filter((o) => o.isFavorite).length);
+  const user = useAppSelector((state) => state[NameSpace.User].user);
   const handleLogout = () => {
     dispatch(logoutAction());
   };
@@ -28,7 +29,7 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
         <div className="header__wrapper">
           <div className="header__left">
             <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
           {!isLoginPage && (
@@ -67,5 +68,7 @@ function Header({isLoginPage} : HeaderProps): JSX.Element {
     </header>
   );
 }
+const MemoizedHeader = React.memo(Header);
+MemoizedHeader.displayName = 'Header';
 
-export default Header;
+export default MemoizedHeader;

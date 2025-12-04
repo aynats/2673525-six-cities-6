@@ -1,5 +1,7 @@
-import { type City } from '../types/city';
+import React from 'react';
 import cn from 'classnames';
+
+import { type City } from '../types/city';
 
 type CitiesListProps = {
   cities: City[];
@@ -35,4 +37,7 @@ function CitiesList({ cities, currentCity, onCityChange }: CitiesListProps): JSX
   );
 }
 
-export default CitiesList;
+const MemoizedCitiesList = React.memo(CitiesList);
+MemoizedCitiesList.displayName = 'CitiesList';
+
+export default MemoizedCitiesList;

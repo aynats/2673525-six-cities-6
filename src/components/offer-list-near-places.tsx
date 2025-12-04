@@ -1,3 +1,4 @@
+import React from 'react';
 import { type Offer } from '../types/offer';
 import OfferList from './offer-list-base';
 
@@ -6,7 +7,7 @@ type OfferListNearPlacesProps = {
   onListItemHover?: (offerId: string) => void;
 };
 
-function OfferListNearPlaces({ offers, onListItemHover } : OfferListNearPlacesProps) : JSX.Element {
+function OfferListNearPlaces({ offers, onListItemHover }: OfferListNearPlacesProps): JSX.Element {
   return (
     <OfferList
       offers={offers}
@@ -17,4 +18,7 @@ function OfferListNearPlaces({ offers, onListItemHover } : OfferListNearPlacesPr
   );
 }
 
-export default OfferListNearPlaces;
+const MemoizedOfferListNearPlaces = React.memo(OfferListNearPlaces);
+MemoizedOfferListNearPlaces.displayName = 'OfferListNearPlaces';
+
+export default MemoizedOfferListNearPlaces;

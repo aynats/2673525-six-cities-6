@@ -1,8 +1,10 @@
-import { type Offer } from '../types/offer';
-import { Link } from 'react-router-dom';
-import { getOfferRoute } from '../const';
+import React from 'react';
 import { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
+
+import { getOfferRoute } from '../const';
+import { type Offer } from '../types/offer';
 
 type OfferCardProps = {
   offer: Offer;
@@ -65,4 +67,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
   );
 }
 
-export default OfferCard;
+const MemoizedOfferCard = React.memo(OfferCard);
+MemoizedOfferCard.displayName = 'OfferCard';
+
+export default MemoizedOfferCard;

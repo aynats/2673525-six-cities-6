@@ -1,13 +1,16 @@
-import OfferCard from './offer-card-base.tsx';
-import { type Offer } from '../types/offer';
+import React from 'react';
 import { MouseEvent } from 'react';
+
+import { type Offer } from '../types/offer';
+import OfferCard from './offer-card-base.tsx';
+
 
 type OfferCardNearPlacesProps = {
   offer: Offer;
   onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
 };
 
-export default function OfferCardNearPlaces({offer, onMouseEnter} : OfferCardNearPlacesProps) {
+function OfferCardNearPlaces({ offer, onMouseEnter }: OfferCardNearPlacesProps) {
   return (
     <OfferCard
       className={'near-places'}
@@ -17,3 +20,7 @@ export default function OfferCardNearPlaces({offer, onMouseEnter} : OfferCardNea
   );
 }
 
+const MemoizedOfferCardNearPlaces = React.memo(OfferCardNearPlaces);
+MemoizedOfferCardNearPlaces.displayName = 'OfferCardNearPlaces';
+
+export default MemoizedOfferCardNearPlaces;

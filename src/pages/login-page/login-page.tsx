@@ -1,11 +1,25 @@
+import React from 'react';
+import { FormEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { FormEvent, useState } from 'react';
-import { loginAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
+import { loginAction } from '../../store/api-actions';
+
+const LoginLocation = React.memo(() => (
+  <section className="locations locations--login locations--current">
+    <div className="locations__item">
+      <Link className="locations__item-link" to={AppRoute.Root}>
+        <span>Paris</span>
+      </Link>
+    </div>
+  </section>
+));
+
+LoginLocation.displayName = 'LoginLocation';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -13,7 +27,7 @@ function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const authorizationStatus = useAppSelector((s) => s.authorizationStatus);
+  const authorizationStatus = useAppSelector((s) => s[NameSpace.User].authorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root} />;
   }
@@ -67,13 +81,7 @@ function LoginPage(): JSX.Element {
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
           </section>
-          <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <Link className="locations__item-link" to={AppRoute.Root}>
-                <span>Amsterdam</span>
-              </Link>
-            </div>
-          </section>
+          <LoginLocation />
         </div>
       </main>
     </div>
