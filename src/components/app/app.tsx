@@ -19,7 +19,7 @@ function App(): JSX.Element {
     dispatch(fetchOffersAction());
   }, [dispatch]);
 
-  const offers = useAppSelector((state) =>  state[NameSpace.Offers].offers);
+  //const offers = useAppSelector((state) =>  state[NameSpace.Offers].offers);
   const isOffersDataLoading = useAppSelector((state) =>  state[NameSpace.Offers].isOffersDataLoading);
   const authorizationStatus = useAppSelector((state) =>  state[NameSpace.User].authorizationStatus);
 
@@ -48,7 +48,7 @@ function App(): JSX.Element {
                 authorizationStatus={authorizationStatus}
                 redirectTo={AppRoute.Login}
               >
-                <FavoritesPage offers={offers}/>
+                <FavoritesPage />
               </PrivateRoute>
             }
           />

@@ -10,7 +10,7 @@ import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { NameSpace } from '../../const';
+import { getCurrentOffer, getOfferReviews, selectTopNearbyOffers, selectMapOffers } from '../../store/offer/offer.selector';
 
 function OfferPage(): JSX.Element {
 
@@ -26,16 +26,10 @@ function OfferPage(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const currentOffer = useAppSelector(
-  (state) => state[NameSpace.Offer].offer,
-  (a, b) => a?.id === b?.id
-);
+  const currentOffer = useAppSelector(getCurrentOffer);
 
-const offerReviews = useAppSelector(
-  (state) => state[NameSpace.Offer].reviews,
-  (a, b) => a.length === b.length
-);
-  const nearbyOffers = useAppSelector((state) => state[NameSpace.Offer].nearby).slice(0, 3);
+  const offerReviews = useAppSelector(getOfferReviews);
+  const nearbyOffers = useAppSelector(selectTopNearbyOffers);
 
   const city = currentOffer
     ? currentOffer.city
@@ -48,15 +42,12 @@ const offerReviews = useAppSelector(
       },
     };
 
-  const mapOffers = useMemo(
-    () => currentOffer ? [...nearbyOffers, currentOffer] : nearbyOffers,
-    [nearbyOffers, currentOffer]
-  );
+  const mapOffers = useAppSelector(selectMapOffers);
 
   const memoizedNearbyOffers = useMemo(
-  () => nearbyOffers,
-  [nearbyOffers]
-);
+    () => nearbyOffers,
+    [nearbyOffers]
+  );
 
   if (!currentOffer) {
     return <div>Offer not found</div>;

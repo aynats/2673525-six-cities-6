@@ -8,28 +8,20 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import Header from '../../components/header/header';
 import { type City } from '../../types/city';
-import { NameSpace } from '../../const';
 import { setCity } from '../../store/city/city.slice';
+import { getOffers, selectOffersByCity, selectUniqueCities } from '../../store/offers/offers.selector';
+import { getCity } from '../../store/city/city.selector';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const currentCity = useAppSelector((state) => state[NameSpace.City].city);
-  const allOffers = useAppSelector((state) => state[NameSpace.Offers].offers);
+  const currentCity = useAppSelector(getCity);
+  const allOffers = useAppSelector(getOffers);
 
-  const cityOffers = useMemo(
-    () => allOffers.filter((offer) => offer.city.name === currentCity.name),
-    [allOffers, currentCity.name]
-  );
+  const cityOffers = useAppSelector(selectOffersByCity);
   const offersCount = cityOffers.length;
 
-  const cities = useMemo(() => {
-    const unique: Record<string, City> = {};
-    allOffers.forEach((offer) => {
-      unique[offer.city.name] = offer.city;
-    });
-    return Object.values(unique);
-  }, [allOffers]);
+  const cities = useAppSelector(selectUniqueCities);
 
 
   const handleCityChange = useCallback((city: City) => {
