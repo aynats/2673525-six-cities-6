@@ -60,7 +60,7 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
       </div>
       <ul className='offer__features'>
         <li className='offer__feature offer__feature--entire'>
-          {offer.housingType}
+          {offer.type}
         </li>
         <li className='offer__feature offer__feature--bedrooms'>
           {offer.bedrooms} {offer.bedrooms !== 1 ? 'Bedrooms' : 'Bedroom'}

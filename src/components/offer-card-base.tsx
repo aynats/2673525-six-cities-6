@@ -29,7 +29,6 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
       dispatch(addFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
     }
   }, [dispatch, offer.isFavorite, offer.id, authStatus, navigate]);
-
   return (
     <article
       id={offer.id.toString()}
@@ -77,7 +76,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
         <h2 className='place-card__name'>
           <Link to={offerRoute}>{offer.title}</Link>
         </h2>
-        <p className='place-card__type'>{offer.housingType}</p>
+        <p className='place-card__type'>{offer.type}</p>
       </div>
     </article>
   );
