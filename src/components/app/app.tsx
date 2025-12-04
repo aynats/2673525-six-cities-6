@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus, getOfferRoute } from '../../const';
+import { AppRoute, AuthorizationStatus, getOfferRoute, NameSpace } from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
@@ -19,9 +19,9 @@ function App(): JSX.Element {
     dispatch(fetchOffersAction());
   }, [dispatch]);
 
-  const offers = useAppSelector((state) => state.offers);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const offers = useAppSelector((state) =>  state[NameSpace.Offers].offers);
+  const isOffersDataLoading = useAppSelector((state) =>  state[NameSpace.Offers].isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) =>  state[NameSpace.User].authorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (

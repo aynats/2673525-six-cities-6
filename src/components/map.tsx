@@ -5,6 +5,7 @@ import useMap from '../hooks/use-map';
 import { type Offer } from '../types/offer';
 import { type City } from '../types/city';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../const';
+import React from 'react';
 
 
 type MapProps = {
@@ -65,4 +66,4 @@ function Map({city, offers, selectedPoint}: MapProps): JSX.Element {
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
 
-export default Map;
+export default React.memo(Map);

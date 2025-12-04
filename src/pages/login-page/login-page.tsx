@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { FormEvent, useState } from 'react';
@@ -26,7 +26,7 @@ function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const authorizationStatus = useAppSelector((s) => s.authorizationStatus);
+  const authorizationStatus = useAppSelector((s) => s[NameSpace.User].authorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root} />;
   }

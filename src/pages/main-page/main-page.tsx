@@ -4,17 +4,19 @@ import { useState } from 'react';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list-cities';
 import CitiesList from '../../components/cities-list';
-import { changeCity } from '../../store/action';
+//import { changeCity } from '../../store/action';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import Header from '../../components/header/header';
 import { type City } from '../../types/city';
+import { NameSpace } from '../../const';
+import { setCity } from '../../store/city/city.slice';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const currentCity = useAppSelector((state) => state.city);
-  const allOffers = useAppSelector((state) => state.offers);
+  const currentCity = useAppSelector((state) => state[NameSpace.City].city);
+  const allOffers = useAppSelector((state) => state[NameSpace.Offers].offers);
 
   const cityOffers = allOffers.filter((offer) => offer.city.name === currentCity.name);
   const offersCount = cityOffers.length;
@@ -28,7 +30,7 @@ function MainPage(): JSX.Element {
   const cities = Object.values(uniqueCities);
 
   const handleCityChange = (city: typeof cities[0]) => {
-    dispatch(changeCity(city));
+    dispatch(setCity(city));
   };
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
