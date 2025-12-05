@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import CitiesList from '../../components/cities-list';
 import Map from '../../components/map';
-import OfferListCities from '../../components/offer-list-cities';
+import OfferListCities from '../../components/offer-list/offer-list-cities';
 import EmptyMainState from '../../components/empty-main-state';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';

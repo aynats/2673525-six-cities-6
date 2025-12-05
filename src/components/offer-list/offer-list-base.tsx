@@ -2,10 +2,10 @@ import React from 'react';
 import { MouseEvent, useCallback } from 'react';
 import cn from 'classnames';
 
-import { type Offer } from '../types/offer';
-import OfferCard from './offer-card-base';
-import OfferCardCities from './offer-card-cities';
-import OfferCardNearPlaces from './offer-card-near-places';
+import { type Offer } from '../../types/offer';
+import OfferCard from '../offer-card/offer-card-base';
+import OfferCardCities from '../offer-card/offer-card-cities';
+import OfferCardNearPlaces from '../offer-card/offer-card-near-places';
 
 type OfferListProps = {
   offers: Offer[];

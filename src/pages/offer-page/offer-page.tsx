@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
 import Form from '../../components/form';
 import Map from '../../components/map';
-import OfferListNearPlaces from '../../components/offer-list-near-places';
+import OfferListNearPlaces from '../../components/offer-list/offer-list-near-places';
 import ReviewsList from '../../components/reviews-list';
-import OfferDescription from './offer-description';
+import OfferDescription from '../../components/offer-page-description';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';

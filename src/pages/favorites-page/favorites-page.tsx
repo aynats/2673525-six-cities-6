@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 import { AppRoute } from '../../const';
 import Header from '../../components/header/header';
-import OfferList from '../../components/offer-list-cities';
+import OfferList from '../../components/offer-list/offer-list-cities';
 import EmptyFavoritesState from '../../components/empty-favorite-state';
 
 import { useAppSelector } from '../../hooks/use-app-selector';

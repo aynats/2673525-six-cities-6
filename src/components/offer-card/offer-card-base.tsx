@@ -3,12 +3,12 @@ import { MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
-import { AppRoute, AuthorizationStatus, getOfferRoute } from '../const';
-import { type Offer } from '../types/offer';
-import { addFavorite } from '../store/api-actions';
-import { useAppDispatch } from '../hooks/use-app-dispatch';
-import { getAuthorizationStatus } from '../store/user/user.selector';
-import { useAppSelector } from '../hooks/use-app-selector';
+import { AppRoute, AuthorizationStatus, getOfferRoute } from '../../const';
+import { type Offer } from '../../types/offer';
+import { addFavorite } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { getAuthorizationStatus } from '../../store/user/user.selector';
+import { useAppSelector } from '../../hooks/use-app-selector';
 
 type OfferCardProps = {
   offer: Offer;
