@@ -1,31 +1,14 @@
-import cn from 'classnames';
-import { useCallback } from 'react';
+import React from 'react';
 
-import { type Offer } from '../../types/offer';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { addFavorite } from '../../store/api-actions';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/use-app-selector';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { getAuthorizationStatus } from '../../store/user/user.selector';
+import { type Offer } from '../types/offer';
+import OfferBookmarkButton from './offer-page-bookmark-button';
+import OfferFeatures from './offer-page-features';
 
 type OfferDescriptionProps = {
   offer: Offer;
 };
 
 function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const authStatus = useAppSelector(getAuthorizationStatus);
-
-  const handleFavoriteClick = useCallback(() => {
-    if (authStatus !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-    } else {
-      dispatch(addFavorite({ offerId: offer.id, isFavorite: offer.isFavorite }));
-    }
-  }, [dispatch, offer.isFavorite, offer.id, authStatus, navigate]);
-
   return (
     <>
       {offer.isPremium && (
@@ -37,19 +20,9 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
         <h1 className='offer__name'>
           {offer.title}
         </h1>
-        <button
-          className={cn(
-            'offer__bookmark-button',
-            { 'offer__bookmark-button--active': offer.isFavorite },
-            'button')}
-          type='button'
-          onClick={handleFavoriteClick}
-        >
-          <svg className='offer__bookmark-icon' width='31' height='33'>
-            <use xlinkHref='#icon-bookmark'></use>
-          </svg>
-          <span className='visually-hidden'>{offer.isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
-        </button>
+
+        <OfferBookmarkButton offerId={offer.id} isFavorite={offer.isFavorite} />
+
       </div>
       <div className='offer__rating rating'>
         <div className='offer__stars rating__stars'>
@@ -58,17 +31,9 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
         </div>
         <span className='offer__rating-value rating__value'>{offer.rating}</span>
       </div>
-      <ul className='offer__features'>
-        <li className='offer__feature offer__feature--entire'>
-          {offer.type}
-        </li>
-        <li className='offer__feature offer__feature--bedrooms'>
-          {offer.bedrooms} {offer.bedrooms !== 1 ? 'Bedrooms' : 'Bedroom'}
-        </li>
-        <li className='offer__feature offer__feature--adults'>
-          Max {offer.maxAdults} adults
-        </li>
-      </ul>
+
+      <OfferFeatures type={offer.type} bedrooms={offer.bedrooms} maxAdults={offer.maxAdults} />
+
       <div className='offer__price'>
         <b className='offer__price-value'>&euro;{offer.price}</b>
         <span className='offer__price-text'>&nbsp;night</span>
@@ -108,4 +73,7 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
   );
 }
 
-export default OfferDescription;
+const MemoizedOfferDescription = React.memo(OfferDescription);
+MemoizedOfferDescription.displayName = 'OfferDescription';
+
+export default MemoizedOfferDescription;
