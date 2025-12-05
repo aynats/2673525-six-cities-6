@@ -45,3 +45,7 @@ export const NameSpace = {
   City: 'CITY',
   User: 'USER',
 } as const;
+
+export enum MaxOfferItems {
+  MaxNearby = 3,
+}
