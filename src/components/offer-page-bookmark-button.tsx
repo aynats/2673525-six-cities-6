@@ -41,8 +41,8 @@ function OfferBookmarkButton({ offerId, isFavorite }: OfferBookmarkButtonProps):
       </svg>
       <span className='visually-hidden'>{isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
     </button>
-  )
-};
+  );
+}
 
 const MemoizedOfferBookmarkButton = React.memo(OfferBookmarkButton);
 MemoizedOfferBookmarkButton.displayName = 'OfferBookmarkButton';
