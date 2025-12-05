@@ -13,6 +13,7 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { getCurrentOffer, getOfferReviews, selectMapOffers, selectTopNearbyOffers } from '../../store/offer/offer.selector';
+import { DEFAULT_CITY } from '../../const';
 
 function OfferPage(): JSX.Element {
 
@@ -29,27 +30,10 @@ function OfferPage(): JSX.Element {
   }, [id, dispatch]);
 
   const currentOffer = useAppSelector(getCurrentOffer);
-  //   const navigate = useNavigate();
-
-  //   useEffect(() => {
-  //   if (!currentOffer) {
-  //     navigate(AppRoute.NotFound);
-  //   }
-  // }, [currentOffer, navigate]);
   const offerReviews = useAppSelector(getOfferReviews);
   const nearbyOffers = useAppSelector(selectTopNearbyOffers);
-
-  const city = currentOffer
-    ? currentOffer.city
-    : {
-      name: 'Paris',
-      location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
-      },
-    };
-
+  
+  const city = currentOffer?.city ?? DEFAULT_CITY;
   const mapOffers = useAppSelector(selectMapOffers);
 
   const memoizedNearbyOffers = useMemo(
