@@ -15,6 +15,8 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { getCurrentOffer, getOfferReviews, selectMapOffers, selectTopNearbyOffers } from '../../store/offer/offer.selector';
 import { DEFAULT_CITY } from '../../const';
+import NotFoundPage from '../not-found-page/not-found-page';
+import { getIsOffersDataLoading } from '../../store/offers/offers.selector';
 
 function OfferPage(): JSX.Element {
 
@@ -33,6 +35,7 @@ function OfferPage(): JSX.Element {
   const currentOffer = useAppSelector(getCurrentOffer);
   const offerReviews = useAppSelector(getOfferReviews);
   const nearbyOffers = useAppSelector(selectTopNearbyOffers);
+  const isOffersDataLoading = useAppSelector(getIsOffersDataLoading);
 
   const city = currentOffer?.city ?? DEFAULT_CITY;
   const mapOffers = useAppSelector(selectMapOffers);
@@ -44,8 +47,8 @@ function OfferPage(): JSX.Element {
 
   const images = currentOffer?.images ?? [];
 
-  if (!currentOffer) {
-    return <div>Offer not found</div>;
+  if (!currentOffer && !isOffersDataLoading) {
+    return <NotFoundPage />;
   }
 
   return (
@@ -69,7 +72,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map' style={{ background: 'none' }}>
-            <Map city={city} offers={mapOffers} selectedPoint={currentOffer} />
+            <Map city={city} offers={mapOffers} selectedPoint={currentOffer ?? undefined} />
           </section>
         </section>
         <div className='container'>
