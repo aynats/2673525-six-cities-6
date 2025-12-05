@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type Offer } from '../types/offer';
+import { type Offer } from '../../types/offer';
 import OfferBookmarkButton from './offer-page-bookmark-button';
 import OfferFeatures from './offer-page-features';
 

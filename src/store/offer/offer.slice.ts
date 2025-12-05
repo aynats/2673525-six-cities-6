@@ -13,7 +13,6 @@ const initialState: OfferState = {
   offer: null,
   reviews: [],
   nearby: [],
-
 };
 
 export const offerSlice = createSlice({

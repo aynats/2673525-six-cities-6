@@ -2,11 +2,11 @@ import cn from 'classnames';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthorizationStatus, AppRoute } from '../const';
-import { useAppDispatch } from '../hooks/use-app-dispatch';
-import { useAppSelector } from '../hooks/use-app-selector';
-import { addFavorite } from '../store/api-actions';
-import { getAuthorizationStatus } from '../store/user/user.selector';
+import { AuthorizationStatus, AppRoute } from '../../const';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { addFavorite } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user/user.selector';
 import React from 'react';
 
 type OfferBookmarkButtonProps = {

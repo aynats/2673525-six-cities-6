@@ -7,7 +7,8 @@ import Form from '../../components/form';
 import Map from '../../components/map';
 import OfferListNearPlaces from '../../components/offer-list/offer-list-near-places';
 import ReviewsList from '../../components/reviews-list';
-import OfferDescription from '../../components/offer-page-description';
+import OfferDescription from '../../components/offer-page-components/offer-page-description';
+import OfferImages from '../../components/offer-page-components/offer-page-images';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
@@ -32,7 +33,7 @@ function OfferPage(): JSX.Element {
   const currentOffer = useAppSelector(getCurrentOffer);
   const offerReviews = useAppSelector(getOfferReviews);
   const nearbyOffers = useAppSelector(selectTopNearbyOffers);
-  
+
   const city = currentOffer?.city ?? DEFAULT_CITY;
   const mapOffers = useAppSelector(selectMapOffers);
 
@@ -40,6 +41,8 @@ function OfferPage(): JSX.Element {
     () => nearbyOffers,
     [nearbyOffers]
   );
+
+  const images = currentOffer?.images ?? [];
 
   if (!currentOffer) {
     return <div>Offer not found</div>;
@@ -55,28 +58,7 @@ function OfferPage(): JSX.Element {
 
       <main className='page__main page__main--offer'>
         <section className='offer'>
-          <div className='offer__gallery-container container'>
-            <div className='offer__gallery'>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/room.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-01.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-02.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-03.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/studio-01.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-01.jpg' alt='Photo studio' />
-              </div>
-            </div>
-          </div>
+          <OfferImages images={images} />
           <div className='offer__container container'>
             <div className='offer__wrapper'>
               {currentOffer && <OfferDescription offer={currentOffer} />}
