@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { logoutAction } from '../../store/api-actions';
+import { fetchOffersAction, logoutAction } from '../../store/api-actions';
 import './header.css';
+import LinkRoot from './link-root';
 
 type HeaderProps = {
   isLoginPage?: boolean;
@@ -17,8 +18,10 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
   const favoriteCount = useAppSelector((state) => state[NameSpace.Offers].offers.filter((o) => o.isFavorite).length);
   const user = useAppSelector((state) => state[NameSpace.User].user);
-  const handleLogout = () => {
-    dispatch(logoutAction());
+
+  const handleLogout = async () => {
+    await dispatch(logoutAction());
+    dispatch(fetchOffersAction());
   };
 
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
@@ -27,11 +30,7 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <div className="header__left">
-            <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-            </Link>
-          </div>
+          <LinkRoot />
           {!isLoginPage && (
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -46,7 +45,7 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
                       </Link>
                     </li>
                     <li className="header__nav-item">
-                      <button className="header__nav-link header__signout-button" onClick={handleLogout}>
+                      <button className="header__nav-link header__signout-button" onClick={() => void handleLogout()}>
                         <span className="header__signout">Sign out</span>
                       </button>
                     </li>
@@ -68,6 +67,7 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
     </header>
   );
 }
+
 const MemoizedHeader = React.memo(Header);
 MemoizedHeader.displayName = 'Header';
 

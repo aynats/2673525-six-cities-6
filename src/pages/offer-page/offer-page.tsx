@@ -5,14 +5,18 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
 import Form from '../../components/form';
 import Map from '../../components/map';
-import OfferListNearPlaces from '../../components/offer-list-near-places';
+import OfferListNearPlaces from '../../components/offer-list/offer-list-near-places';
 import ReviewsList from '../../components/reviews-list';
-import OfferDescription from './offer-description';
+import OfferDescription from '../../components/offer-page-components/offer-page-description';
+import OfferImages from '../../components/offer-page-components/offer-page-images';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { getCurrentOffer, getOfferReviews, selectMapOffers, selectTopNearbyOffers } from '../../store/offer/offer.selector';
+import { DEFAULT_CITY } from '../../const';
+import NotFoundPage from '../not-found-page/not-found-page';
+import { getIsOffersDataLoading } from '../../store/offers/offers.selector';
 
 function OfferPage(): JSX.Element {
 
@@ -29,21 +33,11 @@ function OfferPage(): JSX.Element {
   }, [id, dispatch]);
 
   const currentOffer = useAppSelector(getCurrentOffer);
-
   const offerReviews = useAppSelector(getOfferReviews);
   const nearbyOffers = useAppSelector(selectTopNearbyOffers);
+  const isOffersDataLoading = useAppSelector(getIsOffersDataLoading);
 
-  const city = currentOffer
-    ? currentOffer.city
-    : {
-      name: 'Paris',
-      location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
-        zoom: 13
-      },
-    };
-
+  const city = currentOffer?.city ?? DEFAULT_CITY;
   const mapOffers = useAppSelector(selectMapOffers);
 
   const memoizedNearbyOffers = useMemo(
@@ -51,8 +45,10 @@ function OfferPage(): JSX.Element {
     [nearbyOffers]
   );
 
-  if (!currentOffer) {
-    return <div>Offer not found</div>;
+  const images = currentOffer?.images ?? [];
+
+  if (!currentOffer && !isOffersDataLoading) {
+    return <NotFoundPage />;
   }
 
   return (
@@ -65,28 +61,7 @@ function OfferPage(): JSX.Element {
 
       <main className='page__main page__main--offer'>
         <section className='offer'>
-          <div className='offer__gallery-container container'>
-            <div className='offer__gallery'>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/room.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-01.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-02.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-03.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/studio-01.jpg' alt='Photo studio' />
-              </div>
-              <div className='offer__image-wrapper'>
-                <img className='offer__image' src='img/apartment-01.jpg' alt='Photo studio' />
-              </div>
-            </div>
-          </div>
+          <OfferImages images={images} />
           <div className='offer__container container'>
             <div className='offer__wrapper'>
               {currentOffer && <OfferDescription offer={currentOffer} />}
@@ -97,7 +72,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className='offer__map map' style={{ background: 'none' }}>
-            <Map city={city} offers={mapOffers} selectedPoint={currentOffer} />
+            <Map city={city} offers={mapOffers} selectedPoint={currentOffer ?? undefined} />
           </section>
         </section>
         <div className='container'>

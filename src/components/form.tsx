@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 
 function Form() {
@@ -104,4 +105,7 @@ function Form() {
   );
 }
 
-export default Form;
+const MemoizedForm = React.memo(Form);
+MemoizedForm.displayName = 'Form';
+
+export default MemoizedForm;

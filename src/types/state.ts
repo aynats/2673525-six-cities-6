@@ -30,4 +30,6 @@ export type OfferState = {
 export type OffersState = {
   offers: Offer[];
   isOffersDataLoading: boolean;
+  favorites: Offer[];
+  isFavoritesOffersDataLoading: boolean;
 };

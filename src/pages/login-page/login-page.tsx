@@ -7,7 +7,7 @@ import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { loginAction } from '../../store/api-actions';
+import { fetchOffersAction, loginAction } from '../../store/api-actions';
 
 const LoginLocation = React.memo(() => (
   <section className="locations locations--login locations--current">
@@ -34,8 +34,8 @@ function LoginPage(): JSX.Element {
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const resultAction = await dispatch(loginAction({login: email, password}));
-
+    const resultAction = await dispatch(loginAction({ login: email, password }));
+    dispatch(fetchOffersAction());
     if (loginAction.fulfilled.match(resultAction)) {
       navigate(AppRoute.Root);
     }
@@ -47,7 +47,7 @@ function LoginPage(): JSX.Element {
         <title>{'6 cities — login'}</title>
       </Helmet>
 
-      <Header isLoginPage/>
+      <Header isLoginPage />
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
