@@ -49,3 +49,10 @@ export const NameSpace = {
 export enum MaxOfferItems {
   MaxNearby = 3,
 }
+
+export enum SortingOption {
+  Popular = 'Popular',
+  PriceLowToHigh = 'Price: low to high',
+  PriceHighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first',
+}
