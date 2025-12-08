@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import cn from 'classnames';
 import { Helmet } from 'react-helmet-async';
 
@@ -6,7 +6,8 @@ import Header from '../../components/header/header';
 import CitiesList from '../../components/cities-list';
 import Map from '../../components/map';
 import OfferListCities from '../../components/offer-list/offer-list-cities';
-import EmptyMainState from '../../components/empty-main-state';
+import EmptyMainState from '../../components/main-page-components/empty-main-state';
+import SortingSelector from '../../components/main-page-components/sorting-selector';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
@@ -15,13 +16,13 @@ import { type Offer } from '../../types/offer';
 import { setCity } from '../../store/city/city.slice';
 import { getCity } from '../../store/city/city.selector';
 import { selectOffersByCity, selectUniqueCities } from '../../store/offers/offers.selector';
+import { SortingOption } from '../../const';
 
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const currentCity = useAppSelector(getCity);
-  //const allOffers = useAppSelector(getOffers);
 
   const cityOffers = useAppSelector(selectOffersByCity);
   const offersCount = cityOffers.length;
@@ -38,6 +39,23 @@ function MainPage(): JSX.Element {
     const currentOffer = cityOffers.find((offer) => offer.id.toString() === offerId);
     setSelectedOffer(currentOffer);
   }, [cityOffers]);
+
+  const [sortType, setSortType] = useState<SortingOption>(SortingOption.Popular);
+
+  const sortedOffers = useMemo(() => {
+    const offersCopy = [...cityOffers];
+
+    switch (sortType) {
+      case SortingOption.PriceLowToHigh:
+        return offersCopy.sort((a, b) => a.price - b.price);
+      case SortingOption.PriceHighToLow:
+        return offersCopy.sort((a, b) => b.price - a.price);
+      case SortingOption.TopRatedFirst:
+        return offersCopy.sort((a, b) => b.rating - a.rating);
+      default:
+        return [...cityOffers];
+    }
+  }, [cityOffers, sortType]);
 
   return (
     <div className="page page--gray page--main">
@@ -67,30 +85,17 @@ function MainPage(): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersCount} places to stay in {currentCity.name}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  {' '}
-                  <span className="places__sorting-type" tabIndex={0}>
-                    Popular
-                    <svg className="places__sorting-arrow" width="7" height="4">
-                      <use xlinkHref="#icon-arrow-select"></use>
-                    </svg>
-                  </span>
-                  <ul className="places__options places__options--custom places__options--opened">
-                    <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                    <li className="places__option" tabIndex={0}>Price: low to high</li>
-                    <li className="places__option" tabIndex={0}>Price: high to low</li>
-                    <li className="places__option" tabIndex={0}>Top rated first</li>
-                  </ul>
-                </form>
+
+                <SortingSelector currentSorting={sortType} onSortingChange={setSortType} />
+
                 <OfferListCities
-                  offers={cityOffers}
+                  offers={sortedOffers}
                   onListItemHover={handleListItemHover}
                 />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map" style={{ background: 'none' }}>
-                  <Map city={currentCity} offers={cityOffers} selectedPoint={selectedOffer} />
+                  <Map city={currentCity} offers={sortedOffers} selectedPoint={selectedOffer} />
                 </section>
               </div>
             </div>
