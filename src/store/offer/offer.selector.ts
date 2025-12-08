@@ -17,3 +17,13 @@ export const selectMapOffers = createSelector(
   (currentOffer, topNearbyOffers) =>
     currentOffer ? [...topNearbyOffers, currentOffer] : topNearbyOffers
 );
+
+export const selectReviews = createSelector(
+  [getOfferReviews],
+  (reviews) => {
+    const sorted = [...reviews].sort((a, b) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    return sorted.slice(0, MaxOfferItems.MaxReviews);
+  }
+);
