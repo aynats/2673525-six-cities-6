@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cn from 'classnames';
 
-import { SortingOption } from "../../const";
+import { SortingOption } from '../../const';
 
 
 type SortingSelectorProps = {
@@ -51,9 +51,10 @@ function SortingSelector({ currentSorting, onSortingChange }: SortingSelectorPro
       </span>
 
       <ul className={cn(
-        "places__options places__options--custom",
-        { "places__options--opened": isOpen }
-      )}>
+        'places__options places__options--custom',
+        { 'places__options--opened': isOpen }
+      )}
+      >
         {Object.values(SortingOption).map((option) => (
           <li
             key={option}
@@ -70,7 +71,7 @@ function SortingSelector({ currentSorting, onSortingChange }: SortingSelectorPro
       </ul>
     </form>
   );
-};
+}
 
 const MemoizedSortingSelector = React.memo(SortingSelector);
 MemoizedSortingSelector.displayName = 'SortingSelector';
