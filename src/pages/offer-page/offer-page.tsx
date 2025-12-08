@@ -12,7 +12,7 @@ import OfferImages from '../../components/offer-page-components/offer-page-image
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction, postReviewAction } from '../../store/api-actions';
+import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { getCurrentOffer, getOfferReviews, selectMapOffers, selectTopNearbyOffers } from '../../store/offer/offer.selector';
 import { AuthorizationStatus, DEFAULT_CITY } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';

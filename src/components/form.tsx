@@ -15,17 +15,18 @@ function Form() {
   const isCommentValid = rating > 0 && comment.length >= 50;
 
   const ratings = [
-    { value: 5, title: "perfect" },
-    { value: 4, title: "good" },
-    { value: 3, title: "not bad" },
-    { value: 2, title: "badly" },
-    { value: 1, title: "terribly" },
+    { value: 5, title: 'perfect' },
+    { value: 4, title: 'good' },
+    { value: 3, title: 'not bad' },
+    { value: 2, title: 'badly' },
+    { value: 1, title: 'terribly' },
   ];
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
-    if (!offerId)
+    if (!offerId) {
       return;
+    }
 
     setSending(true);
 
@@ -46,7 +47,9 @@ function Form() {
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={handleSubmit}
+      onSubmit={(evt) => {
+        void handleSubmit(evt);
+      }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
@@ -74,7 +77,7 @@ function Form() {
           </React.Fragment>
         ))}
       </div>
-      
+
       <textarea
         className="reviews__textarea form__textarea"
         id="review"

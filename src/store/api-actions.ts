@@ -52,7 +52,7 @@ export const fetchReviewsAction = createAsyncThunk<ReviewType[], string, {
 );
 
 export const postReviewAction = createAsyncThunk<void, { offerId: string; data: CommentData },
-  { extra: AxiosInstance; }
+  { extra: AxiosInstance }
 >(
   'data/postReview',
   async ({ offerId, data }, { extra: api, dispatch }) => {
