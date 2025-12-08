@@ -51,12 +51,10 @@ function OfferPage(): JSX.Element {
   const images = currentOffer?.images ?? [];
 
   if (isOffersDataLoading) {
-    //// console.log(currentOffer, 'load', isOffersDataLoading);
     return <LoadingPage />;
   }
 
   if (!currentOffer && !isOffersDataLoading) {
-    //console.log(currentOffer, 'f', isOffersDataLoading);
     return <NotFoundPage />;
   }
 

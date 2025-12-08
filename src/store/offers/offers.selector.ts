@@ -11,11 +11,6 @@ export const getIsOffersDataLoading = (state: State) => state[NameSpace.Offers].
 export const getFavoritesOffers = (state: State) => state[NameSpace.Offers].favorites;
 export const getIsFavoritesOffersDataLoading = (state: State) => state[NameSpace.Offers].isFavoritesOffersDataLoading;
 
-// export const selectFavoriteOffers = createSelector(
-//   [getOffers],
-//   (offers) => offers.filter((offer) => offer.isFavorite)
-// );
-
 export const selectOffersByCity = createSelector(
   [getOffers, getCity],
   (offers, city) => offers.filter((offer) => offer.city.name === city.name)
