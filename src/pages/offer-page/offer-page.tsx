@@ -12,11 +12,13 @@ import OfferImages from '../../components/offer-page-components/offer-page-image
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
+import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction, postReviewAction } from '../../store/api-actions';
 import { getCurrentOffer, getOfferReviews, selectMapOffers, selectTopNearbyOffers } from '../../store/offer/offer.selector';
-import { DEFAULT_CITY } from '../../const';
+import { AuthorizationStatus, DEFAULT_CITY } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { getIsOffersDataLoading } from '../../store/offers/offers.selector';
+import LoadingPage from '../loading-page/loading-page';
+import { getAuthorizationStatus } from '../../store/user/user.selector';
 
 function OfferPage(): JSX.Element {
 
@@ -32,6 +34,7 @@ function OfferPage(): JSX.Element {
     }
   }, [id, dispatch]);
 
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const currentOffer = useAppSelector(getCurrentOffer);
   const offerReviews = useAppSelector(getOfferReviews);
   const nearbyOffers = useAppSelector(selectTopNearbyOffers);
@@ -47,7 +50,13 @@ function OfferPage(): JSX.Element {
 
   const images = currentOffer?.images ?? [];
 
+  if (isOffersDataLoading) {
+    //// console.log(currentOffer, 'load', isOffersDataLoading);
+    return <LoadingPage />;
+  }
+
   if (!currentOffer && !isOffersDataLoading) {
+    //console.log(currentOffer, 'f', isOffersDataLoading);
     return <NotFoundPage />;
   }
 
@@ -67,7 +76,7 @@ function OfferPage(): JSX.Element {
               {currentOffer && <OfferDescription offer={currentOffer} />}
               <section className='offer__reviews reviews'>
                 <ReviewsList reviews={offerReviews} />
-                <Form />
+                {authorizationStatus === AuthorizationStatus.Auth && <Form />}
               </section>
             </div>
           </div>
