@@ -21,7 +21,7 @@ function FavoritesPage(): JSX.Element {
   }, [dispatch]);
 
   const favoriteOffers = useAppSelector(getFavoritesOffers);
-  
+
   const offersByCity = useMemo(() => favoriteOffers.reduce<Record<string, Offer[]>>((acc, offer) => {
     if (!acc[offer.city.name]) {
       acc[offer.city.name] = [];
