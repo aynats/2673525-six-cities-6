@@ -22,13 +22,6 @@ function FavoritesPage(): JSX.Element {
 
   const favoriteOffers = useAppSelector(getFavoritesOffers);
 
-  // const amsterdamOffers = favoriteOffers.filter((offer) => offer.city.name === 'Amsterdam');
-  // const cologneOffers = favoriteOffers.filter((offer) => offer.city.name === 'Cologne');
-  // const parisOffers = favoriteOffers.filter((offer) => offer.city.name === 'Paris');
-  // const brusselsOffers = favoriteOffers.filter((offer) => offer.city.name === 'Brussels');
-  // const hamburgOffers = favoriteOffers.filter((offer) => offer.city.name === 'Hamburg');
-  // const dusseldorfOffers = favoriteOffers.filter((offer) => offer.city.name === 'Dusseldorf');
-
   const offersByCity = useMemo(() => favoriteOffers.reduce<Record<string, Offer[]>>((acc, offer) => {
     if (!acc[offer.city.name]) {
       acc[offer.city.name] = [];

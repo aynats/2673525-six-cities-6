@@ -9,6 +9,7 @@ import { type UserData } from '../types/user-data';
 import { type FavoriteData } from '../types/favorite-data';
 import { dropToken, saveToken } from '../services/token';
 import { setError } from './user/user.slice';
+import { CommentData } from '../types/comment-data';
 
 export const clearErrorAction = createAsyncThunk(
   'user/clearError',
@@ -47,6 +48,16 @@ export const fetchReviewsAction = createAsyncThunk<ReviewType[], string, {
   async (offerId, { extra: api }) => {
     const { data } = await api.get<ReviewType[]>(`${APIRoute.Reviews}/${offerId}`);
     return data;
+  }
+);
+
+export const postReviewAction = createAsyncThunk<void, { offerId: string; data: CommentData },
+  { extra: AxiosInstance }
+>(
+  'data/postReview',
+  async ({ offerId, data }, { extra: api, dispatch }) => {
+    await api.post(`${APIRoute.Reviews}/${offerId}`, data);
+    await dispatch(fetchReviewsAction(offerId));
   }
 );
 

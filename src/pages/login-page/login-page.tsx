@@ -3,11 +3,12 @@ import { FormEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { fetchOffersAction, loginAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user/user.selector';
 
 const LoginLocation = React.memo(() => (
   <section className="locations locations--login locations--current">
@@ -27,7 +28,7 @@ function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const authorizationStatus = useAppSelector((s) => s[NameSpace.User].authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root} />;
   }
