@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Review from './review';
 import { type ReviewType } from '../types/review';
 
@@ -8,13 +8,20 @@ type ReviewsListProps = {
 
 function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
   const reviewsAmount = reviews.length;
+
+  const sortedReviews = useMemo(() => {
+    return [...reviews].sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+  }, [reviews]);
+
   return (
     <>
       <h2 className="reviews__title">
         Reviews &middot; <span className="reviews__amount">{reviewsAmount}</span>
       </h2>
       <ul className="reviews__list">
-        {reviews.map((review) => (
+        {sortedReviews.map((review) => (
           <Review
             key={review.id}
             id={review.id}
