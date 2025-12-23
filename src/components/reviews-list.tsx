@@ -9,11 +9,10 @@ type ReviewsListProps = {
 function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
   const reviewsAmount = reviews.length;
 
-  const sortedReviews = useMemo(() => {
-    return [...reviews].sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
-  }, [reviews]);
+  const sortedReviews = useMemo(
+    () => [...reviews].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+    [reviews]);
 
   return (
     <>

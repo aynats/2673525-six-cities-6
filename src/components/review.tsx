@@ -4,7 +4,6 @@ import { MaxOfferCounter } from '../const';
 
 type ReviewProps = ReviewType;
 
-
 function Review(props: ReviewProps): JSX.Element {
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
