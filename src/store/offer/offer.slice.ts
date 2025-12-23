@@ -12,7 +12,7 @@ import { OfferState } from '../../types/state';
 const initialState: OfferState = {
   offer: null,
   reviews: [],
-  nearby: [],
+  nearbyOffers: [],
 };
 
 export const offerSlice = createSlice({
@@ -28,7 +28,7 @@ export const offerSlice = createSlice({
         state.reviews = action.payload;
       })
       .addCase(fetchNearbyAction.fulfilled, (state, action) => {
-        state.nearby = action.payload;
+        state.nearbyOffers = action.payload;
       })
       .addCase(addFavorite.fulfilled, (state, action) => {
         const updatedOffer = action.payload;
@@ -37,7 +37,7 @@ export const offerSlice = createSlice({
           state.offer = updatedOffer;
         }
 
-        state.nearby = state.nearby.map((offer) =>
+        state.nearbyOffers = state.nearbyOffers.map((offer) =>
           offer.id === updatedOffer.id ? updatedOffer : offer
         );
       });

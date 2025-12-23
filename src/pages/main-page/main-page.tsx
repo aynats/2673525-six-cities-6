@@ -43,15 +43,15 @@ function MainPage(): JSX.Element {
   const [sortType, setSortType] = useState<SortingOption>(SortingOption.Popular);
 
   const sortedOffers = useMemo(() => {
-    const offersCopy = [...cityOffers];
+    const copiedOffersList = [...cityOffers];
 
     switch (sortType) {
       case SortingOption.PriceLowToHigh:
-        return offersCopy.sort((a, b) => a.price - b.price);
+        return copiedOffersList.sort((a, b) => a.price - b.price);
       case SortingOption.PriceHighToLow:
-        return offersCopy.sort((a, b) => b.price - a.price);
+        return copiedOffersList.sort((a, b) => b.price - a.price);
       case SortingOption.TopRatedFirst:
-        return offersCopy.sort((a, b) => b.rating - a.rating);
+        return copiedOffersList.sort((a, b) => b.rating - a.rating);
       default:
         return [...cityOffers];
     }
