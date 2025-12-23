@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 import { SortingOption } from '../../const';
 
@@ -50,7 +50,7 @@ function SortingSelector({ currentSorting, onSortingChange }: SortingSelectorPro
         </svg>
       </span>
 
-      <ul className={cn(
+      <ul className={classNames(
         'places__options places__options--custom',
         { 'places__options--opened': isOpen }
       )}
@@ -58,7 +58,7 @@ function SortingSelector({ currentSorting, onSortingChange }: SortingSelectorPro
         {Object.values(SortingOption).map((option) => (
           <li
             key={option}
-            className={cn(
+            className={classNames(
               'places__option',
               { 'places__option--active': option === currentSorting }
             )}

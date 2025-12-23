@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 import { AppRoute, AuthorizationStatus, getOfferRoute, MaxOfferCounter } from '../../const';
 import { type Offer } from '../../types/offer';
@@ -54,7 +54,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
           <button
-            className={cn(
+            className={classNames(
               'place-card__bookmark-button',
               { 'place-card__bookmark-button--active': offer.isFavorite },
               'button')}

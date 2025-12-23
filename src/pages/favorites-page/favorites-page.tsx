@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 import { AppRoute } from '../../const';
 import Header from '../../components/header/header';
@@ -39,7 +39,7 @@ function FavoritesPage(): JSX.Element {
       <Header />
 
       <main
-        className={cn('page__main', 'page__main--favorites', {
+        className={classNames('page__main', 'page__main--favorites', {
           'page__main--favorites-empty': favoriteOffers.length === 0,
         })}
       >

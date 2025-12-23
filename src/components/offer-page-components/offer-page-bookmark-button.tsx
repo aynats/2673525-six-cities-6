@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import classNames from 'classnames';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ function OfferBookmarkButton({ offerId, isFavorite }: OfferBookmarkButtonProps):
 
   return (
     <button
-      className={cn(
+      className={classNames(
         'offer__bookmark-button',
         { 'offer__bookmark-button--active': isFavorite },
         'button')}

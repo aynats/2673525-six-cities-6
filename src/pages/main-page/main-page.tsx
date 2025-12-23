@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
 
 import Header from '../../components/header/header';
@@ -66,7 +66,7 @@ function MainPage(): JSX.Element {
       <Header />
 
       <main
-        className={cn('page__main', 'page__main--index', {
+        className={classNames('page__main', 'page__main--index', {
           'page__main--index-empty': offersCount === 0,
         })}
       >

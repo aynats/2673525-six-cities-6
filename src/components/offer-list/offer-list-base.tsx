@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { MouseEvent, useCallback } from 'react';
-import cn from 'classnames';
+import classNames from 'classnames';
 
 import { type Offer } from '../../types/offer';
 import OfferCard from '../offer-card/offer-card-base';
@@ -57,7 +57,7 @@ function OfferList({ offers, onListItemHover, className, tabsContent, }: OfferLi
 
   return (
     <div
-      className={cn(
+      className={classNames(
         'places__list',
         {
           'near-places__list': className === 'near-places',
