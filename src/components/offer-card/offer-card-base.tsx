@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
-import { AppRoute, AuthorizationStatus, getOfferRoute, MaxOfferItems } from '../../const';
+import { AppRoute, AuthorizationStatus, getOfferRoute, MaxOfferCounter } from '../../const';
 import { type Offer } from '../../types/offer';
 import { addFavorite } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
@@ -69,7 +69,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style={{ width: `${Math.min(MaxOfferItems.MaxRating, Math.round(offer.rating)) * 20}%` }}></span>
+            <span style={{ width: `${Math.min(MaxOfferCounter.Rating, Math.round(offer.rating)) * 20}%` }}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>

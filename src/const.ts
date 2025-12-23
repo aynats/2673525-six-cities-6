@@ -44,11 +44,11 @@ export const NameSpace = {
   User: 'USER',
 } as const;
 
-export enum MaxOfferItems {
-  MaxNearbyCount = 3,
-  MaxReviewsCount = 10,
-  MaxImagesCount = 6,
-  MaxRating = 5,
+export enum MaxOfferCounter {
+  Nearby = 3,
+  Reviews = 10,
+  Images = 6,
+  Rating = 5,
 }
 
 export enum SortingOption {

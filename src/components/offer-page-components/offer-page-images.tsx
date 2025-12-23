@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaxOfferItems } from '../../const';
+import { MaxOfferCounter } from '../../const';
 
 
 type OfferImagesProps = {
@@ -7,7 +7,7 @@ type OfferImagesProps = {
 };
 
 function OfferImages({ images }: OfferImagesProps): JSX.Element {
-  const limitedImages = images.slice(0, MaxOfferItems.MaxImagesCount);
+  const limitedImages = images.slice(0, MaxOfferCounter.Images);
 
   return (
     <div className='offer__gallery-container container'>

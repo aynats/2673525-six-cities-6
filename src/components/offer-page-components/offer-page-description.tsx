@@ -3,7 +3,7 @@ import React from 'react';
 import { type Offer } from '../../types/offer';
 import OfferBookmarkButton from './offer-page-bookmark-button';
 import OfferFeatures from './offer-page-features';
-import { MaxOfferItems } from '../../const';
+import { MaxOfferCounter } from '../../const';
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -27,7 +27,7 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
       </div>
       <div className='offer__rating rating'>
         <div className='offer__stars rating__stars'>
-          <span style={{ width: `${Math.min(MaxOfferItems.MaxRating, Math.round(offer.rating)) * 20}%` }}></span>
+          <span style={{ width: `${Math.min(MaxOfferCounter.Rating, Math.round(offer.rating)) * 20}%` }}></span>
           <span className='visually-hidden'>Rating</span>
         </div>
         <span className='offer__rating-value rating__value'>{offer.rating}</span>
