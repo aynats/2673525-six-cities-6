@@ -48,6 +48,7 @@ export enum MaxOfferItems {
   MaxNearbyCount = 3,
   MaxReviewsCount = 10,
   MaxImagesCount = 6,
+  MaxRating = 5,
 }
 
 export enum SortingOption {

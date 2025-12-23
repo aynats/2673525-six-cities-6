@@ -69,7 +69,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style={{ width: `${offer.rating * 20}%` }}></span>
+            <span style={{ width: `${Math.min(MaxOfferItems.MaxRating, Math.round(offer.rating)) * 20}%` }}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>

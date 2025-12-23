@@ -1,5 +1,6 @@
 import React from 'react';
 import { type ReviewType } from '../types/review';
+import { MaxOfferItems } from '../const';
 
 type ReviewProps = ReviewType;
 
@@ -28,7 +29,7 @@ function Review(props: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: `${props.rating * 20}%` }}></span>
+            <span style={{ width: `${Math.min(MaxOfferItems.MaxRating, Math.round(props.rating)) * 20}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
