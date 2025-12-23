@@ -3,6 +3,7 @@ import React from 'react';
 import { type Offer } from '../../types/offer';
 import OfferBookmarkButton from './offer-page-bookmark-button';
 import OfferFeatures from './offer-page-features';
+import { MaxOfferItems } from '../../const';
 
 type OfferDescriptionProps = {
   offer: Offer;
@@ -32,7 +33,11 @@ function OfferDescription({ offer }: OfferDescriptionProps): JSX.Element {
         <span className='offer__rating-value rating__value'>{offer.rating}</span>
       </div>
 
-      <OfferFeatures type={offer.type} bedrooms={offer.bedrooms} maxAdults={offer.maxAdults} />
+      <OfferFeatures
+        type={offer.type.charAt(0).toUpperCase() + offer.type.slice(1)}
+        bedrooms={offer.bedrooms}
+        maxAdults={offer.maxAdults}
+      />
 
       <div className='offer__price'>
         <b className='offer__price-value'>&euro;{offer.price}</b>

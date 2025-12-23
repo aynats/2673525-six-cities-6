@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
-import { AppRoute, AuthorizationStatus, getOfferRoute } from '../../const';
+import { AppRoute, AuthorizationStatus, getOfferRoute, MaxOfferItems } from '../../const';
 import { type Offer } from '../../types/offer';
 import { addFavorite } from '../../store/api-actions';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
@@ -76,7 +76,7 @@ function OfferCard({ offer, onMouseEnter, className, }: OfferCardProps): JSX.Ele
         <h2 className='place-card__name'>
           <Link to={offerRoute}>{offer.title}</Link>
         </h2>
-        <p className='place-card__type'>{offer.type}</p>
+        <p className='place-card__type'>{offer.type.charAt(0).toUpperCase() + offer.type.slice(1)}</p>
       </div>
     </article>
   );
