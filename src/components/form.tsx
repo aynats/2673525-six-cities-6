@@ -22,7 +22,7 @@ function Form() {
     { value: 1, title: 'terribly' },
   ];
 
-  const handleSubmit = async (evt: React.FormEvent) => {
+  const handleReviewFormSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
     if (!offerId) {
       return;
@@ -48,7 +48,7 @@ function Form() {
       action="#"
       method="post"
       onSubmit={(evt) => {
-        void handleSubmit(evt);
+        void handleReviewFormSubmit (evt);
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

@@ -33,7 +33,7 @@ function LoginPage(): JSX.Element {
     return <Navigate to={AppRoute.Root} />;
   }
 
-  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const resultAction = await dispatch(loginAction({ login: email, password }));
     dispatch(fetchOffersAction());
@@ -54,7 +54,7 @@ function LoginPage(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" method="post" onSubmit={(e) => void handleSubmit(e)}>
+            <form className="login__form form" method="post" onSubmit={(e) => void handleFormSubmit(e)}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input

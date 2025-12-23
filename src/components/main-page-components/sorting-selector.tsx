@@ -14,20 +14,20 @@ function SortingSelector({ currentSorting, onSortingChange }: SortingSelectorPro
 
   const menuRef = useRef<HTMLFormElement | null>(null);
 
-  const handleSelect = useCallback((key: SortingOption) => {
+  const handleSortingSelect = useCallback((key: SortingOption) => {
     onSortingChange(key);
     setIsOpen(false);
   }, [onSortingChange]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleMenuOutsideClick = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleMenuOutsideClick);
+    return () => document.removeEventListener('mousedown', handleMenuOutsideClick);
   }, []);
 
   return (
@@ -63,7 +63,7 @@ function SortingSelector({ currentSorting, onSortingChange }: SortingSelectorPro
               { 'places__option--active': option === currentSorting }
             )}
             tabIndex={0}
-            onClick={() => handleSelect(option)}
+            onClick={() => handleSortingSelect(option)}
           >
             {option}
           </li>

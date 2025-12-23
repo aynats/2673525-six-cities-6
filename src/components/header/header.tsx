@@ -19,7 +19,7 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
   const favoriteCount = useAppSelector((state) => state[NameSpace.Offers].offers.filter((o) => o.isFavorite).length);
   const user = useAppSelector((state) => state[NameSpace.User].user);
 
-  const handleLogout = async () => {
+  const handleLogoutButtonClick = async () => {
     await dispatch(logoutAction());
     dispatch(fetchOffersAction());
   };
@@ -45,7 +45,7 @@ function Header({ isLoginPage }: HeaderProps): JSX.Element {
                       </Link>
                     </li>
                     <li className="header__nav-item">
-                      <button className="header__nav-link header__signout-button" onClick={() => void handleLogout()}>
+                      <button className="header__nav-link header__signout-button" onClick={() => void handleLogoutButtonClick()}>
                         <span className="header__signout">Sign out</span>
                       </button>
                     </li>
