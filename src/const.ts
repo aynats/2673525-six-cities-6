@@ -17,9 +17,10 @@ export enum AppRoute {
 
 export const getOfferRoute = (id: string | number): string => `${AppRoute.Offer}/${id}`;
 
-export const URL_MARKER_DEFAULT = 'img/pin.svg';
-
-export const URL_MARKER_CURRENT = 'img/pin-active.svg';
+export enum MarkerURL {
+  Default = 'img/pin.svg',
+  Current = 'img/pin-active.svg',
+}
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
