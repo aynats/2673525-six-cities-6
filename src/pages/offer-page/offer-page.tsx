@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
 import Form from '../../components/form';
 import Map from '../../components/map';
-import OfferListNearPlaces from '../../components/offer-list/offer-list-near-places';
+import { OfferListNearPlaces } from '../../components/offer-list';
 import ReviewsList from '../../components/reviews-list';
 import OfferDescription from '../../components/offer-page-components/offer-page-description';
 import OfferImages from '../../components/offer-page-components/offer-page-images';

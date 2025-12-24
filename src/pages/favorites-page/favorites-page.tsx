@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { AppRoute } from '../../const';
 import Header from '../../components/header/header';
-import OfferList from '../../components/offer-list/offer-list-cities';
+import { OfferListCities } from '../../components/offer-list';
 import EmptyFavoritesState from '../../components/empty-favorite-state';
 
 import { useAppSelector } from '../../hooks/use-app-selector';
@@ -60,7 +60,7 @@ function FavoritesPage(): JSX.Element {
                       </div>
                     </div>
                     <div className="favorites__places">
-                      <OfferList offers={cityOffers} />
+                      <OfferListCities offers={cityOffers} />
                     </div>
                   </li>
                 ))}
