@@ -6,8 +6,7 @@ import Header from '../../components/header/header';
 import Form from '../../components/form';
 import Map from '../../components/map';
 import { OfferListNearPlaces } from '../../components/offer-list';
-import ReviewsList from '../../components/reviews-list';
-import { OfferImages, OfferDescription } from '../../components/offer-page-components';
+import { OfferImages, OfferDescription, ReviewsList } from '../../components/offer-page-components';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';

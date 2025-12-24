@@ -1,6 +1,6 @@
 import React from 'react';
-import { type ReviewType } from '../types/review';
-import { MaxOfferCounter } from '../const';
+import { type ReviewType } from '../../types/review';
+import { MaxOfferCounter } from '../../const';
 
 type ReviewProps = ReviewType;
 

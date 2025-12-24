@@ -1,6 +1,6 @@
 import React from 'react';
 import Review from './review';
-import { type ReviewType } from '../types/review';
+import { type ReviewType } from '../../types/review';
 
 type ReviewsListProps = {
   reviews: ReviewType[];
