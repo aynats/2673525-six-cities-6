@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { AppRoute } from '../../const';
@@ -12,9 +12,12 @@ import { type Offer } from '../../types/offer';
 import { getFavoritesOffers } from '../../store/offers/offers.selector';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoriteOffers } from '../../store/api-actions';
+import { setCity } from '../../store/city/city.slice';
 
 function FavoritesPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchFavoriteOffers());
   }, [dispatch]);
@@ -28,6 +31,13 @@ function FavoritesPage(): JSX.Element {
     acc[offer.city.name].push(offer);
     return acc;
   }, {}), [favoriteOffers]);
+
+  const handleCityClick = (cityOffers: Offer[]) => (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    const city = cityOffers[0].city;
+    dispatch(setCity(city));
+    navigate(AppRoute.Root);
+  };
 
   return (
     <div className="page">
@@ -53,7 +63,11 @@ function FavoritesPage(): JSX.Element {
                   <li key={cityName} className="favorites__locations-items">
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
-                        <a className="locations__item-link" href="#">
+                        <a
+                          className="locations__item-link"
+                          role="button"
+                          onClick={handleCityClick(cityOffers)}
+                        >
                           <span>{cityName}</span>
                         </a>
                       </div>

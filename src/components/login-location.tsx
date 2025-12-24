@@ -33,8 +33,8 @@ function LoginLocation(): JSX.Element {
       <div className="locations__item">
         <a
           className="locations__item-link"
-          onClick={handleCityClick}
           role="button"
+          onClick={handleCityClick}
         >
           <span>{randomCity?.name ?? DEFAULT_CITY.name}</span>
         </a>
