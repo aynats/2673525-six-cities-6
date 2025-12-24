@@ -3,9 +3,7 @@ import { MouseEvent, useCallback } from 'react';
 import classNames from 'classnames';
 
 import { type Offer } from '../../types/offer';
-import OfferCard from '../offer-card/offer-card-base';
-import OfferCardCities from '../offer-card/offer-card-cities';
-import OfferCardNearPlaces from '../offer-card/offer-card-near-places';
+import { OfferCard, OfferCardCities, OfferCardNearPlaces } from '../offer-card';
 
 type OfferListProps = {
   offers: Offer[];
