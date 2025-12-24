@@ -1,25 +1,13 @@
-import React from 'react';
 import { FormEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
 import Header from '../../components/header/header';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffersAction, loginAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user/user.selector';
-
-const LoginLocation = React.memo(() => (
-  <section className="locations locations--login locations--current">
-    <div className="locations__item">
-      <Link className="locations__item-link" to={AppRoute.Root}>
-        <span>Paris</span>
-      </Link>
-    </div>
-  </section>
-));
-
-LoginLocation.displayName = 'LoginLocation';
+import LoginLocation from '../../components/login-location';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
