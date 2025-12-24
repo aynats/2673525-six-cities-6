@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { fetchOffersAction, logoutAction } from '../../store/api-actions';
+import { fetchFavoriteOffers, fetchOffersAction, logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus, getUserData } from '../../store/user/user.selector';
 import { getFavoritesOffers } from '../../store/offers/offers.selector';
 import './header.css';
@@ -15,12 +15,18 @@ type HeaderProps = {
 };
 
 function Header({ isLoginPage }: HeaderProps): JSX.Element {
-
   const dispatch = useAppDispatch();
+
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favoriteOffers = useAppSelector(getFavoritesOffers);
   const favoriteCount = favoriteOffers.length;
   const user = useAppSelector(getUserData);
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteOffers());
+    }
+  }, [dispatch, authorizationStatus]);
 
   const handleLogoutButtonClick = async () => {
     await dispatch(logoutAction());
