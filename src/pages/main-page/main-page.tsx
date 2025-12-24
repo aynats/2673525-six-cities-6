@@ -5,9 +5,8 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import CitiesList from '../../components/cities-list';
 import Map from '../../components/map';
-import OfferListCities from '../../components/offer-list/offer-list-cities';
-import EmptyMainState from '../../components/main-page-components/empty-main-state';
-import SortingSelector from '../../components/main-page-components/sorting-selector';
+import { OfferListCities } from '../../components/offer-list';
+import { EmptyMainState, SortingSelector } from '../../components/main-page-components';
 
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useAppSelector } from '../../hooks/use-app-selector';
