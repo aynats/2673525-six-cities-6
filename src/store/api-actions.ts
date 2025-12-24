@@ -66,7 +66,7 @@ export const postReviewAction = createAsyncThunk<
       await dispatch(fetchReviewsAction(offerId));
     } catch {
       const errorMessage = 'Failed to send review. Please try again.';
-      
+
       dispatch(setError(errorMessage));
       dispatch(clearErrorAction());
 
