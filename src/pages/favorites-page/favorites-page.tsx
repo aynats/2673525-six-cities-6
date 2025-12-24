@@ -8,10 +8,9 @@ import Header from '../../components/header/header';
 import { OfferListCities } from '../../components/offer-list';
 import EmptyFavoritesState from '../../components/empty-favorite-state';
 
-import { useAppSelector } from '../../hooks/use-app-selector';
 import { type Offer } from '../../types/offer';
 import { getFavoritesOffers } from '../../store/offers/offers.selector';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoriteOffers } from '../../store/api-actions';
 
 function FavoritesPage(): JSX.Element {

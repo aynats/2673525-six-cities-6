@@ -8,8 +8,7 @@ import Map from '../../components/map';
 import { OfferListNearPlaces } from '../../components/offer-list';
 import { OfferImages, OfferDescription, ReviewsList } from '../../components/offer-page-components';
 
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchNearbyAction, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
 import { getCurrentOffer, selectMapOffers, selectReviews, selectTopNearbyOffers } from '../../store/offer/offer.selector';
 import { AuthorizationStatus, DEFAULT_CITY } from '../../const';

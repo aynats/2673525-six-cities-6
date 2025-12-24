@@ -8,8 +8,7 @@ import Map from '../../components/map';
 import { OfferListCities } from '../../components/offer-list';
 import { EmptyMainState, SortingSelector } from '../../components/main-page-components';
 
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { type City } from '../../types/city';
 import { type Offer } from '../../types/offer';
 import { setCity } from '../../store/city/city.slice';

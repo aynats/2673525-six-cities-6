@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../hooks/use-app-dispatch';
+import { useAppDispatch } from '../hooks';
 import { postReviewAction } from '../store/api-actions';
 
 function Form() {

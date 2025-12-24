@@ -5,8 +5,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
 import Header from '../../components/header/header';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchOffersAction, loginAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user/user.selector';
 

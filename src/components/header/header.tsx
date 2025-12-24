@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { useAppSelector } from '../../hooks/use-app-selector';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoriteOffers, fetchOffersAction, logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus, getUserData } from '../../store/user/user.selector';
 import { getFavoritesOffers } from '../../store/offers/offers.selector';

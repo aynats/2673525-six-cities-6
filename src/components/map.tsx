@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { MarkerURL } from '../const';
 import { type City } from '../types/city';
 import { type Offer } from '../types/offer';
-import useMap from '../hooks/use-map';
+import { useMap } from '../hooks';
 
 type MapProps = {
   city: City;

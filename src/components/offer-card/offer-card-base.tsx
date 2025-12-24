@@ -6,9 +6,8 @@ import classNames from 'classnames';
 import { AppRoute, AuthorizationStatus, getOfferRoute, MaxOfferCounter } from '../../const';
 import { type Offer } from '../../types/offer';
 import { addFavorite } from '../../store/api-actions';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user/user.selector';
-import { useAppSelector } from '../../hooks/use-app-selector';
 
 type OfferCardProps = {
   offer: Offer;
