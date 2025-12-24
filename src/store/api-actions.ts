@@ -51,13 +51,27 @@ export const fetchReviewsAction = createAsyncThunk<ReviewType[], string, {
   }
 );
 
-export const postReviewAction = createAsyncThunk<void, { offerId: string; data: CommentData },
-  { extra: AxiosInstance }
+export const postReviewAction = createAsyncThunk<
+  void,
+  { offerId: string; data: CommentData },
+  {
+    extra: AxiosInstance;
+    rejectValue: string;
+  }
 >(
   'data/postReview',
-  async ({ offerId, data }, { extra: api, dispatch }) => {
-    await api.post(`${APIRoute.Reviews}/${offerId}`, data);
-    await dispatch(fetchReviewsAction(offerId));
+  async ({ offerId, data }, { extra: api, dispatch, rejectWithValue }) => {
+    try {
+      await api.post(`${APIRoute.Reviews}/${offerId}`, data);
+      await dispatch(fetchReviewsAction(offerId));
+    } catch {
+      const errorMessage = 'Failed to send review. Please try again.';
+      
+      dispatch(setError(errorMessage));
+      dispatch(clearErrorAction());
+
+      return rejectWithValue(errorMessage);
+    }
   }
 );
 

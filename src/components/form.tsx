@@ -12,7 +12,7 @@ function Form() {
   const [comment, setComment] = useState('');
   const [sending, setSending] = useState(false);
 
-  const isCommentValid = rating > 0 && comment.length >= 50;
+  const isCommentValid = rating > 0 && comment.length >= 50 && comment.length <= 300;
 
   const ratings = [
     { value: 5, title: 'perfect' },
@@ -29,17 +29,20 @@ function Form() {
     }
 
     setSending(true);
+    try {
+      await dispatch(
+        postReviewAction({
+          offerId,
+          data: { rating, comment },
+        })
+      ).unwrap();
 
-    await dispatch(
-      postReviewAction({
-        offerId,
-        data: { rating, comment },
-      })
-    );
+      setRating(0);
+      setComment('');
+    } finally {
+      setSending(false);
+    }
 
-    setRating(0);
-    setComment('');
-    setSending(false);
   };
 
   return (
@@ -48,7 +51,7 @@ function Form() {
       action="#"
       method="post"
       onSubmit={(evt) => {
-        void handleReviewFormSubmit (evt);
+        void handleReviewFormSubmit(evt);
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -63,6 +66,7 @@ function Form() {
               id={`${value}-stars`}
               type="radio"
               checked={rating === value}
+              disabled={sending}
               onChange={() => setRating(value)}
             />
             <label
@@ -84,6 +88,8 @@ function Form() {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={comment}
+        maxLength={300}
+        disabled={sending}
         onChange={(evt) => {
           setComment(evt.target.value);
         }}

@@ -9,18 +9,13 @@ type ReviewsListProps = {
 function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
   const reviewsAmount = reviews.length;
 
-  const sortedReviews = useMemo(
-    () => [...reviews].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
-    [reviews]);
-
   return (
     <>
       <h2 className="reviews__title">
         Reviews &middot; <span className="reviews__amount">{reviewsAmount}</span>
       </h2>
       <ul className="reviews__list">
-        {sortedReviews.map((review) => (
+        {reviews.map((review) => (
           <Review
             key={review.id}
             id={review.id}
