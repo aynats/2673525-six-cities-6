@@ -7,9 +7,9 @@ import { type Offer } from '../types/offer';
 import { type ReviewType } from '../types/review';
 import { type UserData } from '../types/user-data';
 import { type FavoriteData } from '../types/favorite-data';
+import { type CommentData } from '../types/comment-data';
 import { dropToken, saveToken } from '../services/token';
 import { setError } from './user/user.slice';
-import { CommentData } from '../types/comment-data';
 
 export const clearErrorAction = createAsyncThunk(
   'user/clearError',

@@ -6,7 +6,7 @@ import {
   fetchNearbyAction,
   addFavorite
 } from '../api-actions';
-import { OfferState } from '../../types/state';
+import { type OfferState } from '../../types/state';
 
 
 const initialState: OfferState = {

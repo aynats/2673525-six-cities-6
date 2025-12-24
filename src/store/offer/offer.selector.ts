@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { MaxOfferCounter, NameSpace } from '../../const';
-import { State } from '../../types/state';
+import { type State } from '../../types/state';
 
 export const getCurrentOffer = (state: State) => state[NameSpace.Offer].offer;
 export const getOfferReviews = (state: State) => state[NameSpace.Offer].reviews;
